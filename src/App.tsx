@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Layout from './components/Layout';
+import Navigator from './components/Navigator';
+import DecisionTreeFlow from './components/Tree';
 
 function App() {
+  const navigator = Navigator();
+  const decisionTreeFlow = DecisionTreeFlow();
+  const [activeContainer, setActiveContainer] = useState(navigator)
+  const updateActiveContainer = (id: number) => {
+    switch (id) {
+      case 0:
+        if (activeContainer !== navigator)
+          setActiveContainer(navigator);
+        break;
+
+      case 1:
+        if (activeContainer !== decisionTreeFlow)
+          setActiveContainer(decisionTreeFlow);
+        break;
+      default:
+        if (activeContainer !== navigator)
+          setActiveContainer(navigator);
+        break;
+    }
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ fontFamily: "Raleway" }}>
+      <Layout setActiveContainer={updateActiveContainer}>
+        {activeContainer}
+      </Layout>
     </div>
   );
 }
