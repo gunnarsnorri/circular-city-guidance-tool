@@ -1,17 +1,15 @@
 import { NodeType, NodeWithLinkIds, getCreateNode, NodeWithLinks } from "../interfaces/DataInterface";
 
 const demands_and_links: Array<NodeWithLinkIds> = [
-    ["D1.1", ["UCC1"]],
-    ["D1.2", ["UCC1"]],
-    ["D1.3", ["UCC1"]],
-    ["D2.1", ["UCC2"]],
-    ["D2.2", ["UCC2"]],
-    ["D3.1", ["UCC3"]],
-    ["D4.1", ["UCC4"]],
-    ["D4.2", ["UCC4"]],
-    ["D5.1", ["UCC5"]],
-    ["D6.1", ["UCC6"]],
-    ["D7.1", ["UCC7"]]
+    ["D1.1", "Alt. Water Source RW", ["UCC1"]],
+    ["D2.1", "Alt. Water Source WW", ["UCC2"]],
+    ["D3.1", "Alt. Nutrient Source from WW", ["UCC3"]],
+    ["D3.2", "Alt. Nutrient Source from BW", ["UCC3"]],
+    ["D5.1", "Food and Biomass Production", ["UCC5"]],
+    ["D5.2", "Land Restoration", ["UCC5"]],
+    ["D5.3", "Biomass Waste Harvesting", ["UCC5"]],
+    ["D6.1", "UHI Mitigation", ["UCC6"]],
+    ["D6.2", "Increase Energy Sufficiency", ["UCC6"]],
 ]
 
 const demands_with_links: Array<NodeWithLinks> = demands_and_links.map(getCreateNode(NodeType.Demand))

@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button"
 export default function MainNavbar({setActiveContainer }: {setActiveContainer: Function }) {
     return (
         <Navbar bg="white" expand="lg">
-            <Container>
                 <Navbar.Brand href="#">
                     <img
                         src="/logo.png"
@@ -22,7 +21,6 @@ export default function MainNavbar({setActiveContainer }: {setActiveContainer: F
                         <Button variant="link" onClick={() => {setActiveContainer(1)}}>Diagram</Button>
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
         </Navbar>
     )
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import CytoscapeComponent from 'react-cytoscapejs';
 
 import data from '../data/data';
@@ -13,7 +12,7 @@ function fixType(num: number | null): string {
         return Math.trunc(num).toString() + "px";
     }
 }
-export default function Navigator() {
+export default function Navigator({ updateActiveNode }: { updateActiveNode: Function }) {
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
     }
@@ -28,9 +27,7 @@ export default function Navigator() {
         minNodeSpacing: 10, // min spacing between outside of nodes (used for radius adjustment)
         boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
         avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
-        nodeDimensionsIncludeLabels: false, // Excludes the label when calculating node bounding boxes for the layout algorithm
-        height: undefined, // height of layout area (overrides container height)
-        width: undefined, // width of layout area (overrides container width)
+        nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
         spacingFactor: undefined, // Applies a multiplicative factor (>0) to expand or compress the overall area that the nodes take up
         concentric: function (node) { // returns numeric value for each node, placing higher nodes in levels towards the centre
             return node.data("degree");
@@ -44,18 +41,62 @@ export default function Navigator() {
         animateFilter: function (node, i) { return true; }, // a function that determines whether the node should be animated.  All nodes animated by default on animate enabled.  Non-animated nodes are positioned immediately when the layout starts
         ready: undefined, // callback on layoutready
         stop: undefined, // callback on layoutstop
-        transform: function (node, position) { return position; } // transform a given node position. Useful for changing flow direction in discrete layouts
+        transform: function (node, position) { return position; }, // transform a given node position. Useful for changing flow direction in discrete layouts
     }
+
+    const stylesheet: Array<cytoscape.Stylesheet> = [
+        {
+            selector: "node",
+            style: {
+                width: 200,
+                height: 200,
+                label: "data(label)",
+                "background-color": "data(color)",
+                color: "#065143"
+            }
+        },
+        {
+            selector: "edge",
+            style: {
+                "curve-style": "straight"
+            }
+        },
+        {
+            selector: "node[label]",
+            style: {
+                "text-halign": "center",
+                "text-valign": "center",
+                "text-wrap": "wrap",
+                "text-max-width": "150px",
+                "font-size": 24
+            }
+        },
+        {
+            selector: ".collapsed",
+            style: {
+                display: "none"
+            }
+        }
+    ];
+
     const elements = [...data.nodes, ...data.edges];
-    console.log(elements);
 
     return (
         <SizeMe monitorHeight>{({ size }) =>
             <CytoscapeComponent
                 elements={elements}
                 style={{ width: fixType(size.width), height: fixType(size.height) }}
+                stylesheet={stylesheet}
                 layout={options}
-
+                userZoomingEnabled={false}
+                userPanningEnabled={false}
+                boxSelectionEnabled={false}
+                cy={(cy) => {
+                    cy.on("tap", "node", function(event) {
+                        const node = event.target;
+                        updateActiveNode(node.data())
+                    })
+                }}
             />
         }
         </SizeMe>
