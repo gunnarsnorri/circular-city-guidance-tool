@@ -27,12 +27,19 @@ export interface NodeObjectWithNodeType extends cytoscape.NodeDefinition {
 
 export function linkNodesToSource(source: string): (target: string) => cytoscape.EdgeDefinition {
   function linkCb(target: string): cytoscape.EdgeDefinition {
-    return { data: { source: source, target: target } }
+    return {
+      data: {
+        source: source,
+        target: target
+      },
+      classes: "collapsed",
+      selectable: false
+    }
   }
   return linkCb;
 }
 
-export function getCreateNode(nodeType: NodeType): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
+export function getCreateNode(nodeType: NodeType, collapsed: boolean): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
   function createNode(nodeWithLinkIds: NodeWithLinkIds): NodeWithLinks {
     const nodeObject: NodeObjectWithNodeType = {
       grabbable: false,
@@ -41,7 +48,9 @@ export function getCreateNode(nodeType: NodeType): (nodeWithLinkIds: NodeWithLin
         label: nodeWithLinkIds[1],
         nodeType: nodeType,
         color: colorMapping.get(nodeType),
-      }
+      },
+      classes: collapsed ? "collapsed" : "",
+      selectable: !collapsed
     }
     nodeObject.data.degree = nodeObject.data.nodeType;
     return [

@@ -4,6 +4,7 @@ import CytoscapeComponent from 'react-cytoscapejs';
 import data from '../data/data';
 import { SizeMe } from 'react-sizeme';
 import cytoscape from 'cytoscape';
+import { NodeDataWithNodeType, NodeType } from '../interfaces/DataInterface';
 
 function fixType(num: number | null): string {
     if (num === null) {
@@ -12,7 +13,7 @@ function fixType(num: number | null): string {
         return Math.trunc(num).toString() + "px";
     }
 }
-export default function Navigator({ updateActiveNode }: { updateActiveNode: Function }) {
+export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) {
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
     }
@@ -48,8 +49,8 @@ export default function Navigator({ updateActiveNode }: { updateActiveNode: Func
         {
             selector: "node",
             style: {
-                width: 200,
-                height: 200,
+                width: 210,
+                height: 210,
                 label: "data(label)",
                 "background-color": "data(color)",
                 color: "#065143"
@@ -68,18 +69,96 @@ export default function Navigator({ updateActiveNode }: { updateActiveNode: Func
                 "text-valign": "center",
                 "text-wrap": "wrap",
                 "text-max-width": "150px",
-                "font-size": 24
+                "font-size": 24,
+                "font-family": "Raleway"
             }
         },
         {
             selector: ".collapsed",
             style: {
-                display: "none"
+                opacity: 0
             }
         }
     ];
 
     const elements = [...data.nodes, ...data.edges];
+
+    const dirMapping: Map<NodeType, string> = new Map();
+    dirMapping.set(NodeType.UCC, "uccs");
+    dirMapping.set(NodeType.Demand, "demands");
+    dirMapping.set(NodeType.Service, "services");
+    dirMapping.set(NodeType.Unit, "units");
+
+    const getFilePath = (nodeData: NodeDataWithNodeType) => {
+        const baseDir = "../../texts";
+        if (nodeData.id === undefined) {
+            return `${baseDir}/home.txt`
+        }
+        const subDir = dirMapping.get(nodeData.nodeType);
+        return `${baseDir}/${subDir}/${nodeData.id.toLowerCase()}.txt`;
+    }
+
+    const collapseConnectedEdges = (node: cytoscape.NodeSingular) => {
+        node.connectedEdges().forEach((edge) => {
+            edge.addClass("collapsed");
+        })
+    }
+
+    const expandConnectedEdges = (node: cytoscape.NodeSingular) => {
+        node.connectedEdges().forEach((edge) => {
+            edge.removeClass("collapsed");
+        })
+    }
+
+    const collapseOuterNeighbors = (node: cytoscape.NodeSingular) => {
+        const nodeData = node.data();
+
+        node.connectedEdges().forEach((edge) => {
+            const source = edge.source();
+            const sourceData = source.data();
+            if (sourceData.nodeType === undefined) {
+                return;
+            }
+            if (sourceData.nodeType < nodeData.nodeType) {
+                source.addClass("collapsed");
+                source.unselectify();
+                collapseOuterNeighbors(source);
+                collapseConnectedEdges(source);
+            }
+        })
+    }
+
+    const expandOuterNeighbors = (node: cytoscape.NodeSingular, sameLevelNodes: cytoscape.NodeCollection) => {
+        const nodeData = node.data();
+
+        node.connectedEdges().forEach((edge) => {
+            const source = edge.source();
+            const sourceData = source.data();
+            if (sourceData.nodeType === undefined) {
+                return;
+            }
+            if (sourceData.nodeType < nodeData.nodeType) {
+                source.removeClass("collapsed");
+                source.selectify();
+                expandConnectedEdges(node);
+            }
+        });
+        sameLevelNodes.forEach((node) => {
+            collapseOuterNeighbors(node);
+        })
+    }
+
+    const clickNode = (node: cytoscape.NodeSingular | undefined = undefined, sameLevelNodes: cytoscape.NodeCollection) => {
+        if (node === undefined) {
+            setInfoTitle("fasdfas")
+            return;
+        }
+        const filePath = getFilePath(node.data())
+        const nodeData = node.data()
+        setInfoTitle(nodeData.label);
+        expandOuterNeighbors(node, sameLevelNodes);
+
+    }
 
     return (
         <SizeMe monitorHeight>{({ size }) =>
@@ -92,9 +171,13 @@ export default function Navigator({ updateActiveNode }: { updateActiveNode: Func
                 userPanningEnabled={false}
                 boxSelectionEnabled={false}
                 cy={(cy) => {
-                    cy.on("tap", "node", function(event) {
+                    cy.off("select", "node")
+                    cy.on("select", "node", (event) => {
                         const node = event.target;
-                        updateActiveNode(node.data())
+                        const sameLevelNodes = cy.nodes().filter(function (ele) {
+                            return (ele.data().nodeType === node.data().nodeType && ele.id() !== node.id());
+                        });
+                        clickNode(node, sameLevelNodes);
                     })
                 }}
             />
