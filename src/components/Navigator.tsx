@@ -49,8 +49,8 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         {
             selector: "node",
             style: {
-                width: 210,
-                height: 210,
+                width: 200,
+                height: 200,
                 label: "data(label)",
                 "background-color": "data(color)",
                 color: "#065143"
@@ -68,15 +68,14 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 "text-halign": "center",
                 "text-valign": "center",
                 "text-wrap": "wrap",
-                "text-max-width": "150px",
+                "text-max-width": "120px",
                 "font-size": 24,
-                "font-family": "Raleway"
             }
         },
         {
             selector: ".collapsed",
             style: {
-                opacity: 0
+                opacity: 0.2
             }
         }
     ];
@@ -110,7 +109,9 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         })
     }
 
-    const collapseOuterNeighbors = (node: cytoscape.NodeSingular) => {
+    const collapseNodeAndOuterNeighbors = (node: cytoscape.NodeSingular) => {
+        node.addClass("collapsed");
+        collapseConnectedEdges(node);
         const nodeData = node.data();
 
         node.connectedEdges().forEach((edge) => {
@@ -120,15 +121,12 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 return;
             }
             if (sourceData.nodeType < nodeData.nodeType) {
-                source.addClass("collapsed");
-                source.unselectify();
-                collapseOuterNeighbors(source);
-                collapseConnectedEdges(source);
+                collapseNodeAndOuterNeighbors(source);
             }
         })
     }
 
-    const expandOuterNeighbors = (node: cytoscape.NodeSingular, sameLevelNodes: cytoscape.NodeCollection) => {
+    const expandOuterNeighbors = (node: cytoscape.NodeSingular) => {
         const nodeData = node.data();
 
         node.connectedEdges().forEach((edge) => {
@@ -139,16 +137,35 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
             }
             if (sourceData.nodeType < nodeData.nodeType) {
                 source.removeClass("collapsed");
-                source.selectify();
-                expandConnectedEdges(node);
             }
         });
-        sameLevelNodes.forEach((node) => {
-            collapseOuterNeighbors(node);
-        })
+        expandConnectedEdges(node);
     }
 
-    const clickNode = (node: cytoscape.NodeSingular | undefined = undefined, sameLevelNodes: cytoscape.NodeCollection) => {
+    const expandRoot = (node: cytoscape.NodeSingular) => {
+        const nodeData = node.data();
+
+        node.connectedEdges().forEach((edge) => {
+            const target = edge.target();
+            const targetData = target.data();
+            if (targetData.nodeType === undefined) {
+                return;
+            }
+            if (targetData.nodeType > nodeData.nodeType) {
+                target.removeClass("collapsed");
+                edge.removeClass("collapsed");
+                expandRoot(target);
+            }
+        });
+    }
+
+    const expandNode = (node: cytoscape.NodeSingular) => {
+        node.removeClass("collapsed");
+        expandRoot(node);
+        expandOuterNeighbors(node);
+    }
+
+    const clickNode = (node: cytoscape.NodeSingular | undefined = undefined, otherNodes: cytoscape.NodeCollection) => {
         if (node === undefined) {
             setInfoTitle("fasdfas")
             return;
@@ -156,8 +173,29 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         const filePath = getFilePath(node.data())
         const nodeData = node.data()
         setInfoTitle(nodeData.label);
-        expandOuterNeighbors(node, sameLevelNodes);
+        expandNode(node);
+        otherNodes.forEach((node) => {
+            collapseNodeAndOuterNeighbors(node);
+        })
+    }
 
+    const getInnerNode = (node: cytoscape.NodeSingular): cytoscape.NodeSingular => {
+        return node.connectedEdges().filter(function (ele) {
+            const target = ele.target("node")
+            return target.data().nodeType > node.data().nodeType;
+        })[0].target()
+    }
+
+    const getInnerNodes = (node: cytoscape.NodeSingular): Array<cytoscape.NodeSingular> => {
+        let currentNode = node;
+        const innerNodes: Array<cytoscape.NodeSingular> = [];
+
+        while (currentNode.data().nodeType !== NodeType.UCC) {
+            innerNodes.push(currentNode);
+            currentNode = getInnerNode(currentNode);
+        }
+        innerNodes.push(currentNode)
+        return innerNodes;
     }
 
     return (
@@ -174,10 +212,13 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                     cy.off("select", "node")
                     cy.on("select", "node", (event) => {
                         const node = event.target;
-                        const sameLevelNodes = cy.nodes().filter(function (ele) {
-                            return (ele.data().nodeType === node.data().nodeType && ele.id() !== node.id());
+                        const innerNodes = getInnerNodes(node);
+                        const otherNodes = cy.nodes().filter(function (ele) {
+                            return innerNodes.some((innerNode) => {
+                                return (ele.data().nodeType === innerNode.data().nodeType && ele.id() !== innerNode.id());
+                            });
                         });
-                        clickNode(node, sameLevelNodes);
+                        clickNode(node, otherNodes);
                     })
                 }}
             />

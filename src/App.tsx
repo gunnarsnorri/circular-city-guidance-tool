@@ -27,7 +27,7 @@ function App() {
 
   }
   return (
-    <div className="App" style={{ fontFamily: "Raleway" }}>
+    <div className="App">
       <Layout setActiveContainer={updateActiveContainer}>
         {activeContainer}
       </Layout>

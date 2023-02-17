@@ -49,8 +49,7 @@ export function getCreateNode(nodeType: NodeType, collapsed: boolean): (nodeWith
         nodeType: nodeType,
         color: colorMapping.get(nodeType),
       },
-      classes: collapsed ? "collapsed" : "",
-      selectable: !collapsed
+      classes: collapsed ? "collapsed" : ""
     }
     nodeObject.data.degree = nodeObject.data.nodeType;
     return [
