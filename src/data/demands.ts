@@ -12,5 +12,16 @@ const demands_and_links: Array<NodeWithLinkIds> = [
     ["D6.2", "Increase Energy Sufficiency", ["UCC6"]],
 ]
 
-const demands_with_links: Array<NodeWithLinks> = demands_and_links.map(getCreateNode(NodeType.Demand, true))
+export const demand_parent: cytoscape.NodeDefinition = {
+    grabbable: false,
+    selectable: false,
+    data: {
+        id: "Demand-Parent",
+        label: "Demands",
+        color: "blue",
+    },
+    classes: "parent"
+}
+
+const demands_with_links: Array<NodeWithLinks> = demands_and_links.map(getCreateNode(NodeType.Demand, true, demand_parent.data.id))
 export default demands_with_links;

@@ -1,3 +1,4 @@
+import cytoscape from "cytoscape";
 import { NodeType, NodeWithLinks, getCreateNode, NodeWithLinkIds } from "../interfaces/DataInterface";
 
 const ucc_names: Array<NodeWithLinkIds> = [
@@ -10,5 +11,16 @@ const ucc_names: Array<NodeWithLinkIds> = [
     // ["UCC7", "UCC7", []]
 ]
 
-const uccs_with_links: Array<NodeWithLinks> = ucc_names.map(getCreateNode(NodeType.UCC, false))
+export const ucc_parent: cytoscape.NodeDefinition = {
+    grabbable: false,
+    selectable: false,
+    data: {
+        id: "UCC-Parent",
+        label: "UCCs",
+        color: "blue",
+    },
+    classes: "parent"
+}
+
+const uccs_with_links: Array<NodeWithLinks> = ucc_names.map(getCreateNode(NodeType.UCC, false, ucc_parent.data.id))
 export default uccs_with_links;

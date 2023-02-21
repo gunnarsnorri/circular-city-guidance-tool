@@ -24,5 +24,16 @@ const services_and_links: Array<NodeWithLinkIds> = [
     // Add S4, S7
 ]
 
-const services_with_links: Array<NodeWithLinks> = services_and_links.map(getCreateNode(NodeType.Service, true))
+export const service_parent: cytoscape.NodeDefinition = {
+    grabbable: false,
+    selectable: false,
+    data: {
+        id: "Service-Parent",
+        label: "Services",
+        color: "blue",
+    },
+    classes: "parent"
+}
+
+const services_with_links: Array<NodeWithLinks> = services_and_links.map(getCreateNode(NodeType.Service, true, service_parent.data.id))
 export default services_with_links;

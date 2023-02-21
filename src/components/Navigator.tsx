@@ -5,6 +5,8 @@ import data from '../data/data';
 import { SizeMe } from 'react-sizeme';
 import cytoscape from 'cytoscape';
 import { NodeDataWithNodeType, NodeType } from '../interfaces/DataInterface';
+import Circle from '../assets/circle.svg'
+import Circle2 from '../assets/circle-xxl.png'
 
 function fixType(num: number | null): string {
     if (num === null) {
@@ -53,13 +55,15 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 height: 200,
                 label: "data(label)",
                 "background-color": "data(color)",
-                color: "#065143"
+                color: "#065143",
+                "overlay-opacity": 0
             }
         },
         {
             selector: "edge",
             style: {
-                "curve-style": "straight"
+                "curve-style": "straight",
+                "overlay-opacity": 0
             }
         },
         {
@@ -76,6 +80,18 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
             selector: ".collapsed",
             style: {
                 opacity: 0.2
+            }
+        },
+        {
+            selector: ".parent",
+            style: {
+                "background-image": function () {
+                    return Circle2;
+                },
+                "border-opacity": 0,
+                "background-opacity": 0,
+                "background-image-opacity": 0.2,
+                'background-fit': 'contain',
             }
         }
     ];

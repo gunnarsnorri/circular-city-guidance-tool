@@ -1,7 +1,7 @@
 import ElementsWithNodeType, { NodeObjectWithNodeType, NodeWithLinks } from "../interfaces/DataInterface";
-import uccs_with_links from "./uccs";
-import demands_with_links from "./demands";
-import services_with_links from "./services";
+import uccs_with_links, { ucc_parent } from "./uccs";
+import demands_with_links, { demand_parent } from "./demands";
+import services_with_links, { service_parent } from "./services";
 import units_with_links from "./units";
 import cytoscape from "cytoscape";
 
@@ -24,6 +24,8 @@ const getData = (all_nodes_and_links: Array<NodeWithLinks>) =>  {
     return { nodes: nodes, edges: edges };
 }
 
-const data: ElementsWithNodeType = getData([...uccs_with_links, ...demands_with_links, ...services_with_links, ...units_with_links])
+const data: cytoscape.ElementsDefinition = getData([...uccs_with_links, ...demands_with_links, ...services_with_links, ...units_with_links])
+
+data.nodes.push(ucc_parent, demand_parent, service_parent);
 
 export default data;

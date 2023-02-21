@@ -8,10 +8,10 @@ export enum NodeType {
 };
 
 const colorMapping: Map<NodeType, string> = new Map();
-colorMapping.set(NodeType.UCC, "#93b1a7")
-colorMapping.set(NodeType.Demand, "#99c2a2")
-colorMapping.set(NodeType.Service, "#c5edac")
-colorMapping.set(NodeType.Unit, "#dbfeb8")
+colorMapping.set(NodeType.UCC, "#FFC6D9")
+colorMapping.set(NodeType.Demand, "#FFE5B4")
+colorMapping.set(NodeType.Service, "#C9D5B9")
+colorMapping.set(NodeType.Unit, "#8C9362")
 
 export type NodeWithLinkIds = [string, string, Array<string>];
 
@@ -39,7 +39,7 @@ export function linkNodesToSource(source: string): (target: string) => cytoscape
   return linkCb;
 }
 
-export function getCreateNode(nodeType: NodeType, collapsed: boolean): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
+export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: string): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
   function createNode(nodeWithLinkIds: NodeWithLinkIds): NodeWithLinks {
     const nodeObject: NodeObjectWithNodeType = {
       grabbable: false,
@@ -48,6 +48,7 @@ export function getCreateNode(nodeType: NodeType, collapsed: boolean): (nodeWith
         label: nodeWithLinkIds[1],
         nodeType: nodeType,
         color: colorMapping.get(nodeType),
+        parent: parent
       },
       classes: collapsed ? "collapsed" : ""
     }
