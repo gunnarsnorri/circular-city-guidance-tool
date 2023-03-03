@@ -1,5 +1,5 @@
 import cytoscape from "cytoscape";
-import { NodeType, NodeWithLinks, getCreateNode, NodeWithLinkIds } from "../interfaces/DataInterface";
+import { NodeType, NodeWithLinks, getCreateNode, NodeWithLinkIds, colorMapping, Pannable } from "../interfaces/DataInterface";
 
 const ucc_names: Array<NodeWithLinkIds> = [
     ["UCC1", "Restoring and Maintaining the Water Cycle", []],
@@ -11,15 +11,16 @@ const ucc_names: Array<NodeWithLinkIds> = [
     // ["UCC7", "UCC7", []]
 ]
 
-export const ucc_parent: cytoscape.NodeDefinition = {
+export const ucc_parent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
     selectable: false,
+    pannable: true,
     data: {
         id: "UCC-Parent",
-        label: "UCCs",
-        color: "blue",
+        label: "",  // "UCCs",
+        color: colorMapping.get(NodeType.UCC),
     },
-    classes: "parent"
+    classes: "parent",
 }
 
 const uccs_with_links: Array<NodeWithLinks> = ucc_names.map(getCreateNode(NodeType.UCC, false, ucc_parent.data.id))

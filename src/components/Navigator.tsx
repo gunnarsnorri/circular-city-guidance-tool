@@ -3,10 +3,8 @@ import CytoscapeComponent from 'react-cytoscapejs';
 
 import data from '../data/data';
 import { SizeMe } from 'react-sizeme';
-import cytoscape from 'cytoscape';
+import cytoscape, { LayoutEventObject } from 'cytoscape';
 import { NodeDataWithNodeType, NodeType } from '../interfaces/DataInterface';
-import Circle from '../assets/circle.svg'
-import Circle2 from '../assets/circle-xxl.png'
 
 function fixType(num: number | null): string {
     if (num === null) {
@@ -21,13 +19,13 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
     }
     const options: Myopts = {
         name: "concentric",
-        fit: true, // whether to fit the viewport to the graph
+        fit: false, // whether to fit the viewport to the graph
         padding: 30, // the padding on fit
         startAngle: 3 / 2 * Math.PI, // where nodes start in radians
         sweep: undefined, // how many radians should be between the first and last node (defaults to full circle)
         clockwise: true, // whether the layout should go clockwise (true) or counterclockwise/anticlockwise (false)
         equidistant: false, // whether levels have an equal radial distance betwen them, may cause bounding box overflow
-        minNodeSpacing: 10, // min spacing between outside of nodes (used for radius adjustment)
+        minNodeSpacing: 30, // min spacing between outside of nodes (used for radius adjustment)
         boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
         avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
         nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
@@ -47,6 +45,18 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         transform: function (node, position) { return position; }, // transform a given node position. Useful for changing flow direction in discrete layouts
     }
 
+    const makeSVGDonut = (node: cytoscape.NodeSingular) => {
+        const parser = new DOMParser();
+        const center_x = node.width() / 2;
+        const center_y = node.height() / 2;
+        const child_radius = node.children()[0].width() / 2
+        const radius = (node.width() + node.height()) / 4 - child_radius;
+        const stroke_width = child_radius * 2.0;
+        const svgStr = `<circle class="donut-segment" cx="${center_x}" cy="${center_y}" r="${radius}" fill="transparent" stroke="${node.data().color}" stroke-width="${stroke_width}"></circle>`;
+        let svgText = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg><svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='${node.width()}' height='${node.height()}'>${svgStr}</svg>`;
+        return parser.parseFromString(svgText, 'text/xml').documentElement;
+    }
+
     const stylesheet: Array<cytoscape.Stylesheet> = [
         {
             selector: "node",
@@ -55,7 +65,7 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 height: 200,
                 label: "data(label)",
                 "background-color": "data(color)",
-                color: "#065143",
+                color: "#444444",
                 "overlay-opacity": 0
             }
         },
@@ -79,19 +89,20 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         {
             selector: ".collapsed",
             style: {
-                opacity: 0.2
+                opacity: 0.4
             }
         },
         {
             selector: ".parent",
             style: {
-                "background-image": function () {
-                    return Circle2;
+                "background-image": function (node: cytoscape.NodeSingular) {
+                    const s = makeSVGDonut(node)
+                    return 'data:image/svg+xml;utf8,' + encodeURIComponent(s.outerHTML);;
                 },
                 "border-opacity": 0,
                 "background-opacity": 0,
-                "background-image-opacity": 0.2,
-                'background-fit': 'contain',
+                "background-image-opacity": 0.3,
+                'background-fit': 'none',
             }
         }
     ];
@@ -177,8 +188,8 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
 
     const expandNode = (node: cytoscape.NodeSingular) => {
         node.removeClass("collapsed");
-        expandRoot(node);
         expandOuterNeighbors(node);
+        expandRoot(node);
     }
 
     const clickNode = (node: cytoscape.NodeSingular | undefined = undefined, otherNodes: cytoscape.NodeCollection) => {
@@ -189,10 +200,10 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         const filePath = getFilePath(node.data())
         const nodeData = node.data()
         setInfoTitle(nodeData.label);
-        expandNode(node);
         otherNodes.forEach((node) => {
             collapseNodeAndOuterNeighbors(node);
         })
+        expandNode(node);
     }
 
     const getInnerNode = (node: cytoscape.NodeSingular): cytoscape.NodeSingular => {
@@ -221,10 +232,15 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 style={{ width: fixType(size.width), height: fixType(size.height) }}
                 stylesheet={stylesheet}
                 layout={options}
-                userZoomingEnabled={false}
-                userPanningEnabled={false}
+                userZoomingEnabled={true}
+                userPanningEnabled={true}
                 boxSelectionEnabled={false}
-                cy={(cy) => {
+                zoom={0.08}
+                pan={{ x: (size.width ?? 0) / 2, y: (size.height ?? 0) / 2 }}
+                minZoom={0.05}
+                maxZoom={0.9}
+                wheelSensitivity={0.3}
+                cy={(cy: cytoscape.Core) => {
                     cy.off("select", "node")
                     cy.on("select", "node", (event) => {
                         const node = event.target;

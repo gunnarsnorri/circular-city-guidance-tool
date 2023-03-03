@@ -7,11 +7,15 @@ export enum NodeType {
   UCC
 };
 
-const colorMapping: Map<NodeType, string> = new Map();
-colorMapping.set(NodeType.UCC, "#FFC6D9")
-colorMapping.set(NodeType.Demand, "#FFE5B4")
-colorMapping.set(NodeType.Service, "#C9D5B9")
-colorMapping.set(NodeType.Unit, "#8C9362")
+export const colorMapping: Map<NodeType, string> = new Map();
+colorMapping.set(NodeType.UCC, "#FFC0CB")
+colorMapping.set(NodeType.Demand, "#FF4444")
+colorMapping.set(NodeType.Service, "#7FB3D5")
+colorMapping.set(NodeType.Unit, "#A2D729")
+
+export interface Pannable {
+  pannable: boolean
+}
 
 export type NodeWithLinkIds = [string, string, Array<string>];
 
