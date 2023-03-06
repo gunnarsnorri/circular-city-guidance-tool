@@ -2,9 +2,9 @@ import cytoscape from "cytoscape";
 
 export enum NodeType {
   Unit = 1,
-  Service,
-  Demand,
-  UCC
+  Service = 6,
+  Demand = 7,
+  UCC = 8
 };
 
 export const colorMapping: Map<NodeType, string> = new Map();
@@ -43,10 +43,12 @@ export function linkNodesToSource(source: string): (target: string) => cytoscape
   return linkCb;
 }
 
-export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: string): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
-  function createNode(nodeWithLinkIds: NodeWithLinkIds): NodeWithLinks {
+export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: string, nodeCount?: number): (nodeWithLinkIds: NodeWithLinkIds, index: number) => NodeWithLinks {
+  function createNode(nodeWithLinkIds: NodeWithLinkIds, index: number): NodeWithLinks {
+    const hidden = nodeWithLinkIds[1] === "Hidden";
     const nodeObject: NodeObjectWithNodeType = {
       grabbable: false,
+      selectable: hidden? false : true,
       data: {
         id: nodeWithLinkIds[0],
         label: nodeWithLinkIds[1],
@@ -54,9 +56,21 @@ export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: s
         color: colorMapping.get(nodeType),
         parent: parent
       },
-      classes: collapsed ? "collapsed" : ""
+      classes: hidden? "hidden" : collapsed ? "collapsed" : ""
     }
-    nodeObject.data.degree = nodeObject.data.nodeType;
+    if ((nodeObject.data.nodeType > 1) || (nodeCount === undefined))
+      nodeObject.data.degree = nodeObject.data.nodeType;
+    else if (index < nodeCount * 0.1)
+      nodeObject.data.degree = 5;
+    else if (index < nodeCount * 0.3)
+      nodeObject.data.degree = 4;
+    else if (index < nodeCount * 0.5)
+      nodeObject.data.degree = 3;
+    else if (index < nodeCount * 0.7)
+      nodeObject.data.degree = 2;
+    else
+      nodeObject.data.degree = 1;
+
     return [
       nodeObject,
       nodeWithLinkIds[2].map(linkNodesToSource(nodeWithLinkIds[0]))

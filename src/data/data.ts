@@ -1,4 +1,4 @@
-import ElementsWithNodeType, { NodeObjectWithNodeType, NodeWithLinks } from "../interfaces/DataInterface";
+import { NodeObjectWithNodeType, NodeWithLinks } from "../interfaces/DataInterface";
 import uccs_with_links, { ucc_parent } from "./uccs";
 import demands_with_links, { demand_parent } from "./demands";
 import services_with_links, { service_parent } from "./services";

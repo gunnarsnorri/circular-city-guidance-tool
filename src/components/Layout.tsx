@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Navigator from './Navigator';
 
 const Layout = ({ children, setActiveContainer }: { children: React.ReactNode, setActiveContainer: Function }) => {
-    const [infoTitle, setInfoTitle] = useState("Unit Selection Guidance Tool");
+    const [textId, setTextId] = useState("default");
     return (
         <>
             <div>
@@ -19,10 +19,10 @@ const Layout = ({ children, setActiveContainer }: { children: React.ReactNode, s
                     </Row>
                     <Row className="h-100" sm={11} md={11} lg={11}>
                         <Col sm={8} md={8} lg={8}>
-                            <Navigator setInfoTitle={setInfoTitle}></Navigator>
+                            <Navigator setTextId={setTextId}></Navigator>
                         </Col>
                         <Col sm={4} md={4} lg={4}>
-                            <Info title={infoTitle} />
+                            <Info textId={textId} />
                         </Col>
                     </Row>
                 </Container>

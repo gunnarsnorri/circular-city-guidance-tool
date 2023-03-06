@@ -184,6 +184,6 @@ export const unit_parent: cytoscape.NodeDefinition & Pannable = {
     classes: "parent",
 }
 
-const units_with_links: Array<NodeWithLinks> = units_and_links.map(getCreateNode(NodeType.Unit, true, unit_parent.data.id))
+const units_with_links: Array<NodeWithLinks> = units_and_links.map(getCreateNode(NodeType.Unit, true, unit_parent.data.id, units_and_links.length))
 export default units_with_links;
 

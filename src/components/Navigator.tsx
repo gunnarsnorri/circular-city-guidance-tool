@@ -3,8 +3,8 @@ import CytoscapeComponent from 'react-cytoscapejs';
 
 import data from '../data/data';
 import { SizeMe } from 'react-sizeme';
-import cytoscape, { LayoutEventObject } from 'cytoscape';
-import { NodeDataWithNodeType, NodeType } from '../interfaces/DataInterface';
+import cytoscape from 'cytoscape';
+import { NodeType } from '../interfaces/DataInterface';
 
 function fixType(num: number | null): string {
     if (num === null) {
@@ -13,9 +13,10 @@ function fixType(num: number | null): string {
         return Math.trunc(num).toString() + "px";
     }
 }
-export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) {
+export default function Navigator({ setTextId }: { setTextId: Function }) {
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
+        levelWidth(node: any): number;
     }
     const options: Myopts = {
         name: "concentric",
@@ -29,7 +30,7 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
         boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
         avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
         nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
-        spacingFactor: undefined, // Applies a multiplicative factor (>0) to expand or compress the overall area that the nodes take up
+        spacingFactor: 1, // Applies a multiplicative factor (>0) to expand or compress the overall area that the nodes take up
         concentric: function (node) { // returns numeric value for each node, placing higher nodes in levels towards the centre
             return node.data("degree");
         },
@@ -104,25 +105,16 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 "background-image-opacity": 0.3,
                 'background-fit': 'none',
             }
+        },
+        {
+            selector: ".hidden",
+            style: {
+                opacity: 0
+            }
         }
     ];
 
     const elements = [...data.nodes, ...data.edges];
-
-    const dirMapping: Map<NodeType, string> = new Map();
-    dirMapping.set(NodeType.UCC, "uccs");
-    dirMapping.set(NodeType.Demand, "demands");
-    dirMapping.set(NodeType.Service, "services");
-    dirMapping.set(NodeType.Unit, "units");
-
-    const getFilePath = (nodeData: NodeDataWithNodeType) => {
-        const baseDir = "../../texts";
-        if (nodeData.id === undefined) {
-            return `${baseDir}/home.txt`
-        }
-        const subDir = dirMapping.get(nodeData.nodeType);
-        return `${baseDir}/${subDir}/${nodeData.id.toLowerCase()}.txt`;
-    }
 
     const collapseConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
@@ -194,12 +186,10 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
 
     const clickNode = (node: cytoscape.NodeSingular | undefined = undefined, otherNodes: cytoscape.NodeCollection) => {
         if (node === undefined) {
-            setInfoTitle("fasdfas")
+            setTextId("default")
             return;
         }
-        const filePath = getFilePath(node.data())
-        const nodeData = node.data()
-        setInfoTitle(nodeData.label);
+        setTextId(node.id());
         otherNodes.forEach((node) => {
             collapseNodeAndOuterNeighbors(node);
         })
@@ -235,7 +225,7 @@ export default function Navigator({ setInfoTitle }: { setInfoTitle: Function }) 
                 userZoomingEnabled={true}
                 userPanningEnabled={true}
                 boxSelectionEnabled={false}
-                zoom={0.08}
+                zoom={0.15}
                 pan={{ x: (size.width ?? 0) / 2, y: (size.height ?? 0) / 2 }}
                 minZoom={0.05}
                 maxZoom={0.9}

@@ -5,7 +5,7 @@ import Navigator from './components/Navigator';
 import DecisionTreeFlow from './components/Tree';
 
 function App() {
-  const navigator = Navigator({ setInfoTitle: function () { } });  // TODO: update this
+  const navigator = Navigator({ setTextId: function () { } });  // TODO: update this
   const decisionTreeFlow = DecisionTreeFlow();
   const [activeContainer, setActiveContainer] = useState(navigator)
   const updateActiveContainer = (id: number) => {
