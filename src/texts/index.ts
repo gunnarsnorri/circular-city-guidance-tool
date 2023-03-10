@@ -3,7 +3,7 @@ interface Texts {
 }
 function importAll(r: __WebpackModuleApi.RequireContext) {
     let texts: Texts = {};
-    r.keys().forEach(item => {
+    r.keys().forEach((item) => {
         const splitItem = item.split("/");
         texts[splitItem[splitItem.length-2]] = r(item);
     });

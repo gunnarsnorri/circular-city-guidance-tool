@@ -2,18 +2,27 @@ import React from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 
 import data from '../data/data';
-import { SizeMe } from 'react-sizeme';
+import { useResizeDetector } from 'react-resize-detector';
 import cytoscape from 'cytoscape';
 import { NodeType } from '../interfaces/DataInterface';
 
-function fixType(num: number | null): string {
-    if (num === null) {
-        return "";
-    } else {
-        return Math.trunc(num).toString() + "px";
-    }
+interface NavigatorProps {
+    setTextId: Function,
+    navbarHeight: number,
+    cyObj: cytoscape.Core | null
+    setCy: Function
 }
-export default function Navigator({ setTextId }: { setTextId: Function }) {
+
+let firstTime = true;
+
+export default function Navigator(
+    {
+        setTextId,
+        navbarHeight,
+        cyObj,
+        setCy
+    }: NavigatorProps) {
+    const { width, height, ref } = useResizeDetector();
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
         levelWidth(node: any): number;
@@ -37,12 +46,21 @@ export default function Navigator({ setTextId }: { setTextId: Function }) {
         levelWidth: function (nodes) { // the variation of concentric values in each level
             return 1;
         },
-        animate: false, // whether to transition the node positions
-        animationDuration: 500, // duration of animation in ms if enabled
+        animate: true, // whether to transition the node positions
+        animationDuration: 50, // duration of animation in ms if enabled
         animationEasing: undefined, // easing of animation if enabled
         animateFilter: function (node, i) { return true; }, // a function that determines whether the node should be animated.  All nodes animated by default on animate enabled.  Non-animated nodes are positioned immediately when the layout starts
         ready: undefined, // callback on layoutready
-        stop: undefined, // callback on layoutstop
+        stop: async (event) => {
+            if (firstTime) {  // Need a timeout so that all points are fully created
+                await new Promise(f => setTimeout(f, 500));
+                firstTime = false;
+            }
+            const allNodes = event.cy.nodes();
+            const unselected = event.cy.nodes(".collapsed,.hidden,.parent");
+            const serviceParent = event.cy.$("#Service-Parent");
+            event.cy.fit(allNodes.not(unselected).union(serviceParent))
+        }, // callback on layoutstop, fit services and selected nodes.
         transform: function (node, position) { return position; }, // transform a given node position. Useful for changing flow direction in discrete layouts
     }
 
@@ -216,21 +234,20 @@ export default function Navigator({ setTextId }: { setTextId: Function }) {
     }
 
     return (
-        <SizeMe monitorHeight>{({ size }) =>
+        <div ref={ref} style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
             <CytoscapeComponent
                 elements={elements}
-                style={{ width: fixType(size.width), height: fixType(size.height) }}
+                style={{ width: width, height: height }}
                 stylesheet={stylesheet}
                 layout={options}
                 userZoomingEnabled={true}
                 userPanningEnabled={true}
                 boxSelectionEnabled={false}
-                zoom={0.15}
-                pan={{ x: (size.width ?? 0) / 2, y: (size.height ?? 0) / 2 }}
-                minZoom={0.05}
-                maxZoom={0.9}
-                wheelSensitivity={0.3}
+                minZoom={0.08}
+                maxZoom={1.0}
+                wheelSensitivity={0.2}
                 cy={(cy: cytoscape.Core) => {
+                    setCy(cy)
                     cy.off("select", "node")
                     cy.on("select", "node", (event) => {
                         const node = event.target;
@@ -244,7 +261,6 @@ export default function Navigator({ setTextId }: { setTextId: Function }) {
                     })
                 }}
             />
-        }
-        </SizeMe>
+        </div>
     );
 }

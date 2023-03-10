@@ -27,6 +27,7 @@ export interface NodeDataWithNodeType extends cytoscape.NodeDataDefinition {
 
 export interface NodeObjectWithNodeType extends cytoscape.NodeDefinition {
   data: NodeDataWithNodeType;
+  pannable?: boolean;
 };
 
 export function linkNodesToSource(source: string): (target: string) => cytoscape.EdgeDefinition {
@@ -49,6 +50,7 @@ export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: s
     const nodeObject: NodeObjectWithNodeType = {
       grabbable: false,
       selectable: hidden? false : true,
+      pannable: true,
       data: {
         id: nodeWithLinkIds[0],
         label: nodeWithLinkIds[1],
