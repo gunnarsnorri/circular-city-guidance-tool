@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   navigator:
-    image: ghcr.io/gunnarsnorri/circular-city-guidance-tool
+    image: "ghcr.io/gunnarsnorri/circular-city-guidance-tool:master"
     ports:
       - 3000:80
     labels:
