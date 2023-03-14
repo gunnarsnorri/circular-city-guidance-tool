@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: gunnarsnorri/circular_city_guidance_tool
+  IMAGE_NAME: gunnarsnorri/circular-city-guidance-tool
 
 jobs:
   build-and-push-image:

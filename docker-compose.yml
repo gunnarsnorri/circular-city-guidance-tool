@@ -1,15 +1,15 @@
 version: "3.8"
 services:
   navigator:
-    image: circular_city_guidance_tool
+    image: ghcr.io/gunnarsnorri/circular-city-guidance-tool
     ports:
       - 3000:80
     labels:
-      - "com.centurylinklabs.watchtower.scope=circular_city_guidance_tool"
+      - "com.centurylinklabs.watchtower.scope=circular-city-guidance-tool"
   watchtower:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 300 --scope circular_city_guidance_tool
+    command: --interval 300 --scope circular-city-guidance-tool
     labels:
-      - "com.centurylinklabs.watchtower.scope=circular_city_guidance_tool"
+      - "com.centurylinklabs.watchtower.scope=circular-city-guidance-tool"
