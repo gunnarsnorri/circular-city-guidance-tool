@@ -1,7 +1,8 @@
-import { NodeType, NodeWithLinkIds, getCreateNode, NodeWithLinks, Pannable, colorMapping } from "../interfaces/DataInterface";
+import { NodeType, NodeWithLinkIds, NodeWithLinks, Pannable, colorMapping } from "../interfaces/DataInterface";
+import { getCreateNode } from "./data";
 
 
-const units_and_links: Array<NodeWithLinkIds> = [
+const unitsAndLinks: Array<NodeWithLinkIds> = [
     ["U1", "Filter strips", ["S1.1.1"]],
     ["U2", "Filter drain", ["S1.1.1"]],
     ["U3", "Bioswale", ["S1.1.1"]],
@@ -172,7 +173,7 @@ const units_and_links: Array<NodeWithLinkIds> = [
     ["U168", "Hidden", ["S6.2.3"]],
 ]
 
-export const unit_parent: cytoscape.NodeDefinition & Pannable = {
+export const unitParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
     selectable: false,
     pannable: true,
@@ -184,6 +185,6 @@ export const unit_parent: cytoscape.NodeDefinition & Pannable = {
     classes: "parent",
 }
 
-const units_with_links: Array<NodeWithLinks> = units_and_links.map(getCreateNode(NodeType.Unit, true, unit_parent.data.id, units_and_links.length))
-export default units_with_links;
+const unitsWithLinks: Array<NodeWithLinks> = unitsAndLinks.map(getCreateNode(NodeType.Unit, true, unitParent.data.id))
+export default unitsWithLinks;
 

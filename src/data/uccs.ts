@@ -1,17 +1,18 @@
 import cytoscape from "cytoscape";
-import { NodeType, NodeWithLinks, getCreateNode, NodeWithLinkIds, colorMapping, Pannable } from "../interfaces/DataInterface";
+import { NodeType, NodeWithLinks, NodeWithLinkIds, colorMapping, Pannable } from "../interfaces/DataInterface";
+import { getCreateNode } from "./data";
 
-const ucc_names: Array<NodeWithLinkIds> = [
+const uccNames: Array<NodeWithLinkIds> = [
     ["UCC1", "Restoring and Maintaining the Water Cycle", []],
-    ["UCC5", "Food and Biomass Production", []],
+    ["UCC2", "Water and Waste Treatment and Recovery", []],
     ["UCC3", "Nutrient Recovery and Reuse", []],
     // ["UCC4", "UCC4", []],
-    ["UCC2", "Water and Waste Treatment and Recovery", []],
+    ["UCC5", "Food and Biomass Production", []],
     ["UCC6", "Energy Efficiency and Recovery", []],
     // ["UCC7", "UCC7", []]
 ]
 
-export const ucc_parent: cytoscape.NodeDefinition & Pannable = {
+export const uccParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
     selectable: false,
     pannable: true,
@@ -23,5 +24,5 @@ export const ucc_parent: cytoscape.NodeDefinition & Pannable = {
     classes: "parent",
 }
 
-const uccs_with_links: Array<NodeWithLinks> = ucc_names.map(getCreateNode(NodeType.UCC, false, ucc_parent.data.id))
-export default uccs_with_links;
+const uccsWithLinks: Array<NodeWithLinks> = uccNames.map(getCreateNode(NodeType.UCC, false, uccParent.data.id))
+export default uccsWithLinks;
