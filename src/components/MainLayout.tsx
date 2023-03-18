@@ -4,14 +4,12 @@ import Navbar from './Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Navigator from './Navigator';
-import NavigatorMenu from './NavigatorMenu';
-import cytoscape from 'cytoscape';
+import ActiveApp from './ActiveApp';
 
-const Layout = ({ children, setActiveContainer }: { children: React.ReactNode, setActiveContainer: Function }) => {
+const Layout = () => {
     const [textId, setTextId] = useState("default");
     const [navbarHeight, setNavbarHeight] = useState(0);
-    const [cy, setCy] = useState<cytoscape.Core | null>(null);
+    const [activeContainerId, setActiveContainerId] = useState<String>("1")
 
     const navbarRef = useRef<HTMLDivElement>(null);
 
@@ -25,21 +23,17 @@ const Layout = ({ children, setActiveContainer }: { children: React.ReactNode, s
             <Row sm={1} md={1} lg={1}>
                 <Col>
                     <div ref={navbarRef}>
-                        <Navbar setActiveContainer={setActiveContainer} />
+                        <Navbar setActiveContainerId={setActiveContainerId} />
                     </div>
                 </Col>
             </Row>
             <Row>
                 <Col sm={8} md={8} lg={8}>
-                    <Navigator
-                        setTextId={setTextId}
-                        navbarHeight={navbarHeight}
-                        cyObj={cy}
-                        setCy={setCy}
+                    <ActiveApp
+                    activeContainerId={activeContainerId}
+                    setActiveContainerId={setActiveContainerId}
+                    navigatorProps={{setTextId: setTextId, navbarHeight: navbarHeight}}
                     />
-                    <NavigatorMenu
-                        cy={cy}
-                        style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }} />
                 </Col>
                 <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${navbarHeight}px)` }}>
                     <Info textId={textId} />

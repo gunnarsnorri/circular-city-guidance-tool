@@ -1,17 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 
 import data from '../data/data';
 import { useResizeDetector } from 'react-resize-detector';
 import cytoscape from 'cytoscape';
 import { NodeType } from '../interfaces/DataInterface';
-
-interface NavigatorProps {
-    setTextId: Function,
-    navbarHeight: number,
-    cyObj: cytoscape.Core | null
-    setCy: Function
-}
+import NavigatorMenu from './NavigatorMenu';
+import { NavigatorProps } from '../interfaces/ComponentProps'
 
 let firstTime = true;
 
@@ -19,9 +14,8 @@ export default function Navigator(
     {
         setTextId,
         navbarHeight,
-        cyObj,
-        setCy
     }: NavigatorProps) {
+    const [cy, setCy] = useState<cytoscape.Core | null>(null);
     const { width, height, ref } = useResizeDetector();
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
@@ -121,7 +115,7 @@ export default function Navigator(
                 "border-opacity": 0,
                 "background-opacity": 0,
                 "background-image-opacity": 0.3,
-                'background-fit': 'none',
+                'background-fit': 'cover',
             }
         },
         {
@@ -261,6 +255,9 @@ export default function Navigator(
                     })
                 }}
             />
+            <NavigatorMenu
+                cy={cy}
+                style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }} />
         </div>
     );
 }
