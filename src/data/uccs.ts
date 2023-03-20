@@ -14,7 +14,7 @@ const uccNames: Array<NodeWithLinkIds> = [
 
 export const uccParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
-    selectable: false,
+    selectable: true,
     pannable: true,
     data: {
         id: "UCC-Parent",

@@ -175,7 +175,7 @@ const unitsAndLinks: Array<NodeWithLinkIds> = [
 
 export const unitParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
-    selectable: false,
+    selectable: true,
     pannable: true,
     data: {
         id: "Unit-Parent",

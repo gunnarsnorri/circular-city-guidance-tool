@@ -16,7 +16,7 @@ export default function MainNavbar({ setActiveContainerId, mode, setPreferredThe
                     height="50"
                     alt="Circular-City"
                 />{" "}
-                Circularity with NBS
+                Circular City
             </Navbar.Brand>
             <Nav defaultActiveKey="1" onSelect={handleSelect}>
                 <Nav.Link eventKey="1">Navigator</Nav.Link>

@@ -30,7 +30,7 @@ const servicesAndLinks: Array<NodeWithLinkIds> = [
 
 export const serviceParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
-    selectable: false,
+    selectable: true,
     pannable: true,
     data: {
         id: "Service-Parent",

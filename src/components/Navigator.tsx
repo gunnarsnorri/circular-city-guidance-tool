@@ -202,11 +202,7 @@ export default function Navigator(
         expandRoot(node);
     }
 
-    const clickNode = (node: cytoscape.NodeSingular | undefined = undefined, otherNodes: cytoscape.NodeCollection) => {
-        if (node === undefined) {
-            setTextId("default")
-            return;
-        }
+    const clickNode = (node: cytoscape.NodeSingular, otherNodes: cytoscape.NodeCollection) => {
         setTextId(node.id());
         otherNodes.forEach((node) => {
             collapseNodeAndOuterNeighbors(node);
@@ -233,6 +229,26 @@ export default function Navigator(
         return innerNodes;
     }
 
+    const onSelect = (event: cytoscape.EventObject) => {
+        const node: cytoscape.NodeSingular = event.target;
+        if (cy === null) {
+            setTextId("default")
+            return;
+        } else if (node === undefined || node.data().nodeType === undefined || node.hasClass("hidden")) {
+            setTextId("default");
+            cy.json({ elements: elements });
+            return;
+        }
+
+        const innerNodes = getInnerNodes(node);
+        const otherNodes = cy.nodes().filter(function (ele) {
+            return innerNodes.some((innerNode) => {
+                return (ele.data().nodeType === innerNode.data().nodeType && ele.id() !== innerNode.id());
+            });
+        });
+        clickNode(node, otherNodes);
+    };
+
     return (
         <div ref={ref} style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
             <CytoscapeComponent
@@ -249,15 +265,11 @@ export default function Navigator(
                 cy={(cy: cytoscape.Core) => {
                     setCy(cy)
                     cy.off("select", "node")
-                    cy.on("select", "node", (event) => {
-                        const node = event.target;
-                        const innerNodes = getInnerNodes(node);
-                        const otherNodes = cy.nodes().filter(function (ele) {
-                            return innerNodes.some((innerNode) => {
-                                return (ele.data().nodeType === innerNode.data().nodeType && ele.id() !== innerNode.id());
-                            });
-                        });
-                        clickNode(node, otherNodes);
+                    cy.on("select", "node", onSelect)
+                    cy.off("select", "edge")
+                    cy.on("select", "edge", (event) => {
+                        setTextId("default");
+                        cy.json({ elements: elements });
                     })
                 }}
             />

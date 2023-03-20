@@ -16,7 +16,7 @@ const demandsAndLinks: Array<NodeWithLinkIds> = [
 
 export const demandParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
-    selectable: false,
+    selectable: true,
     pannable: true,
     data: {
         id: "Demand-Parent",

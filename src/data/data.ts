@@ -34,7 +34,7 @@ export function linkNodesToSource(source: string, hide: boolean): (target: strin
                 target: target
             },
             classes: classes,
-            selectable: false
+            selectable: true
         }
     }
     return linkCb;
@@ -45,7 +45,7 @@ export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: s
         let hidden = nodeWithLinkIds[1] === "Hidden";
         const nodeObject: NodeObjectWithNodeType = {
             grabbable: false,
-            selectable: hidden ? false : true,
+            selectable: true,
             pannable: true,
             data: {
                 id: nodeWithLinkIds[0],
