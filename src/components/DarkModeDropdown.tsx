@@ -13,7 +13,7 @@ const arrayOfThemes = [
 export default function DarkModeDropdown({ mode, setPreferredTheme }: { mode: string, setPreferredTheme: Function }) {
 
     return (
-        <NavDropdown className='ml-auto'
+        <NavDropdown align={'end'}
             title={
                 <>
                     {

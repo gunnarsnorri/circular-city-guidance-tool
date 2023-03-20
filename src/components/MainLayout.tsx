@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ActiveApp from './ActiveApp';
+import { useResizeDetector } from 'react-resize-detector';
 
 const IS_SERVER = typeof window === 'undefined';
 
@@ -14,10 +15,9 @@ let storedTheme = IS_SERVER ? 'light' : localStorage.getItem('theme');
 
 const Layout = () => {
     const [textId, setTextId] = useState("default");
-    const [navbarHeight, setNavbarHeight] = useState(0);
     const [activeContainerId, setActiveContainerId] = useState<String>("1")
 
-    const navbarRef = useRef<HTMLDivElement>(null);
+    const { width, height, ref } = useResizeDetector();
 
     const [mode, setMode] = useState(getPreferredTheme());
     const [theme, setTheme] = useState("light");
@@ -37,11 +37,6 @@ const Layout = () => {
             setTheme(inTheme)
         }
     }
-
-    useEffect(() => {
-        if (navbarRef.current !== null)
-            setNavbarHeight(navbarRef.current.clientHeight)
-    }, [navbarRef, setNavbarHeight])
 
     useEffect(() => {
         if (IS_SERVER) return;
@@ -70,7 +65,7 @@ const Layout = () => {
         <Container fluid>
             <Row sm={1} md={1} lg={1}>
                 <Col>
-                    <div ref={navbarRef}>
+                    <div ref={ref}>
                         <Navbar setActiveContainerId={setActiveContainerId} mode={mode} setPreferredTheme={setPreferredTheme} />
                     </div>
                 </Col>
@@ -79,10 +74,10 @@ const Layout = () => {
                 <Col sm={8} md={8} lg={8}>
                     <ActiveApp
                         activeContainerId={activeContainerId}
-                        navigatorProps={{ setTextId: setTextId, navbarHeight: navbarHeight, theme: theme }}
+                        navigatorProps={{ setTextId: setTextId, navbarHeight: height ?? 0, theme: theme }}
                     />
                 </Col>
-                <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${navbarHeight}px)` }}>
+                <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${height ?? 0}px)` }}>
                     <Info textId={textId} />
                 </Col>
             </Row>
