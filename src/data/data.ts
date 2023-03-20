@@ -42,7 +42,7 @@ export function linkNodesToSource(source: string, hide: boolean): (target: strin
 
 export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: string): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
     function createNode(nodeWithLinkIds: NodeWithLinkIds): NodeWithLinks {
-        const hidden = nodeWithLinkIds[1] === "Hidden";
+        let hidden = nodeWithLinkIds[1] === "Hidden";
         const nodeObject: NodeObjectWithNodeType = {
             grabbable: false,
             selectable: hidden ? false : true,
@@ -57,6 +57,7 @@ export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: s
             classes: hidden ? "hidden" : collapsed ? "collapsed" : ""
         }
         nodeObject.data.degree = nodeObject.data.nodeType;
+        hidden = (nodeObject.data.nodeType === NodeType.Unit)? true : hidden
         return [
             nodeObject,
             nodeWithLinkIds[2].map(linkNodesToSource(nodeWithLinkIds[0], hidden))

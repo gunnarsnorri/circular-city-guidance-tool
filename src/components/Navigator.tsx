@@ -14,6 +14,7 @@ export default function Navigator(
     {
         setTextId,
         navbarHeight,
+        theme
     }: NavigatorProps) {
     const [cy, setCy] = useState<cytoscape.Core | null>(null);
     const { width, height, ref } = useResizeDetector();
@@ -53,7 +54,7 @@ export default function Navigator(
             const allNodes = event.cy.nodes();
             const unselected = event.cy.nodes(".collapsed,.hidden,.parent");
             const serviceParent = event.cy.$("#Service-Parent");
-            event.cy.fit(allNodes.not(unselected).union(serviceParent))
+            event.cy.fit(allNodes.not(unselected).union(serviceParent), 60)
         }, // callback on layoutstop, fit services and selected nodes.
         transform: function (node, position) { return position; }, // transform a given node position. Useful for changing flow direction in discrete layouts
     }
@@ -70,6 +71,9 @@ export default function Navigator(
         return parser.parseFromString(svgText, 'text/xml').documentElement;
     }
 
+    const bsDark = "#dee2e6"
+    const bsLight = "#212529"
+
     const stylesheet: Array<cytoscape.Stylesheet> = [
         {
             selector: "node",
@@ -78,8 +82,9 @@ export default function Navigator(
                 height: 200,
                 label: "data(label)",
                 "background-color": "data(color)",
-                color: "#444444",
-                "overlay-opacity": 0
+                color: theme === "dark" ? bsDark : bsLight,
+                "overlay-opacity": 0,
+                "border-width": 1
             }
         },
         {
@@ -102,7 +107,8 @@ export default function Navigator(
         {
             selector: ".collapsed",
             style: {
-                opacity: 0.4
+                opacity: 0.4,
+                "border-width": 0
             }
         },
         {
@@ -257,7 +263,8 @@ export default function Navigator(
             />
             <NavigatorMenu
                 cy={cy}
-                style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }} />
+                style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }}
+                theme={theme} />
         </div>
     );
 }

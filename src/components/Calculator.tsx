@@ -74,7 +74,7 @@ export default function Calculator() {
     }
 
     useEffect(() => {
-        if (region !== undefined) {
+        if (region !== undefined && allRegionData[region] !== undefined) {
             const regionData = allRegionData[region];
             if (regionData.monthlyRainfall !== undefined) {
                 const runoff = regionData.monthlyRainfall.map((rainfall) => {

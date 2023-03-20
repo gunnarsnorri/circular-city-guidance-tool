@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import ReactMarkdown from "react-markdown";
 import { texts } from "../texts";
+import "../styles/info.css"
 
 
-export default function Info({textId}: {textId: string}) {
+export default function Info({ textId }: { textId: string }) {
     const [text, setText] = useState("");
     useEffect(() => {
         let existingText = texts["default"];
@@ -12,8 +13,12 @@ export default function Info({textId}: {textId: string}) {
             existingText = texts[textIdLower];
         fetch(existingText).then((response) => response.text()).then((textData) => {
             setText(textData)
-          })
+        })
 
     }, [textId])
-    return <ReactMarkdown children={text} />
+    return (
+        <div className="infoBox">
+            <ReactMarkdown children={text} />
+        </div>
+    )
 }

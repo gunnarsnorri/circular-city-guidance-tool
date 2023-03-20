@@ -1,14 +1,15 @@
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import { NavDropdown } from "react-bootstrap"
+import DarkModeDropdown from "./DarkModeDropdown"
 
-export default function MainNavbar({ setActiveContainerId }: { setActiveContainerId: Function }) {
+export default function MainNavbar({ setActiveContainerId, mode, setPreferredTheme }: { setActiveContainerId: Function, mode: string, setPreferredTheme: Function }) {
     const handleSelect = (eventKey: String | null) => {
         if (eventKey !== null)
             setActiveContainerId(eventKey)
     }
     return (
-        <Navbar bg="white" expand="lg">
+        <Navbar expand="lg">
             <Navbar.Brand href="#">
                 <img
                     src="/logo.png"
@@ -17,11 +18,14 @@ export default function MainNavbar({ setActiveContainerId }: { setActiveContaine
                     alt="Circular-City"
                 />
             </Navbar.Brand>
-            <Nav variant="tabs" defaultActiveKey="1" onSelect={handleSelect}>
+            <Nav defaultActiveKey="1" onSelect={handleSelect}>
                 <Nav.Link eventKey="1">Navigator</Nav.Link>
                 <NavDropdown title="Calculator" id="calculator-dropdown">
                     <NavDropdown.Item eventKey="2.1">Rainwater</NavDropdown.Item>
                 </NavDropdown>
+            </Nav>
+            <Nav className="ml-auto">
+                <DarkModeDropdown mode={mode} setPreferredTheme={setPreferredTheme}/>
             </Nav>
         </Navbar>
     )
