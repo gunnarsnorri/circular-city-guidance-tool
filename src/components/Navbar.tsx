@@ -10,13 +10,13 @@ export default function MainNavbar({ setActiveContainerId, mode, setPreferredThe
     }
     return (
         <Navbar expand="lg">
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="#" className="gap-3">
                 <img
                     src="/logo.png"
                     height="50"
-                    className="d-inline-block align-top"
                     alt="Circular-City"
-                />
+                />{" "}
+                Circularity with NBS
             </Navbar.Brand>
             <Nav defaultActiveKey="1" onSelect={handleSelect}>
                 <Nav.Link eventKey="1">Navigator</Nav.Link>
