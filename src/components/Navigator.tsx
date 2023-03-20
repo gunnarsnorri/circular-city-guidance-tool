@@ -7,16 +7,18 @@ import cytoscape from 'cytoscape';
 import { NodeType } from '../interfaces/DataInterface';
 import NavigatorMenu from './NavigatorMenu';
 import { NavigatorProps } from '../interfaces/ComponentProps'
+import { Col, Container } from 'react-bootstrap';
+import Info from './Info';
 
 let firstTime = true;
 
 export default function Navigator(
     {
-        setTextId,
         navbarHeight,
         theme
     }: NavigatorProps) {
     const [cy, setCy] = useState<cytoscape.Core | null>(null);
+    const [textId, setTextId] = useState("default");
     const { width, height, ref } = useResizeDetector();
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
@@ -250,35 +252,42 @@ export default function Navigator(
     };
 
     return (
-        <div ref={ref} style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
-            <CytoscapeComponent
-                elements={elements}
-                style={{ width: width, height: height }}
-                stylesheet={stylesheet}
-                layout={options}
-                userZoomingEnabled={true}
-                userPanningEnabled={true}
-                boxSelectionEnabled={false}
-                minZoom={0.08}
-                maxZoom={1.0}
-                wheelSensitivity={0.2}
-                cy={(cy: cytoscape.Core) => {
-                    setCy(cy)
-                    cy.off("select", "node")
-                    cy.on("select", "node", onSelect)
-                    cy.off("select", "edge")
-                    cy.on("select", "edge", (event: cytoscape.EventObject) => {
-                        setTextId("default");
-                        const edge: cytoscape.EdgeSingular = event.target;
-                        edge.unselect();
-                        cy.json({ elements: elements });
-                    })
-                }}
-            />
-            <NavigatorMenu
-                cy={cy}
-                style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }}
-                theme={theme} />
-        </div>
+        <>
+            <Col sm={8} md={8} lg={8}>
+                <div ref={ref} style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
+                    <CytoscapeComponent
+                        elements={elements}
+                        style={{ width: width, height: height }}
+                        stylesheet={stylesheet}
+                        layout={options}
+                        userZoomingEnabled={true}
+                        userPanningEnabled={true}
+                        boxSelectionEnabled={false}
+                        minZoom={0.08}
+                        maxZoom={1.0}
+                        wheelSensitivity={0.2}
+                        cy={(cy: cytoscape.Core) => {
+                            setCy(cy)
+                            cy.off("select", "node")
+                            cy.on("select", "node", onSelect)
+                            cy.off("select", "edge")
+                            cy.on("select", "edge", (event: cytoscape.EventObject) => {
+                                setTextId("default");
+                                const edge: cytoscape.EdgeSingular = event.target;
+                                edge.unselect();
+                                cy.json({ elements: elements });
+                            })
+                        }}
+                    />
+                    <NavigatorMenu
+                        cy={cy}
+                        style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }}
+                        theme={theme} />
+                </div>
+            </Col >
+            <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${navbarHeight ?? 0}px)` }}>
+                <Info textId={textId} />
+            </Col>
+        </>
     );
 }

@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Info from './Info';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import ActiveApp from './ActiveApp';
 import { useResizeDetector } from 'react-resize-detector';
 
@@ -14,10 +12,9 @@ let storedTheme = IS_SERVER ? 'light' : localStorage.getItem('theme');
 
 
 const Layout = () => {
-    const [textId, setTextId] = useState("default");
     const [activeContainerId, setActiveContainerId] = useState<String>("1")
 
-    const { width, height, ref } = useResizeDetector();
+    const { height, ref } = useResizeDetector();
 
     const [mode, setMode] = useState(getPreferredTheme());
     const [theme, setTheme] = useState("light");
@@ -63,23 +60,16 @@ const Layout = () => {
 
     return (
         <Container fluid>
-            <Row sm={1} md={1} lg={1}>
-                <Col>
-                    <div ref={ref}>
-                        <Navbar setActiveContainerId={setActiveContainerId} mode={mode} setPreferredTheme={setPreferredTheme} />
-                    </div>
-                </Col>
+            <Row>
+                <div ref={ref}>
+                    <Navbar setActiveContainerId={setActiveContainerId} mode={mode} setPreferredTheme={setPreferredTheme} />
+                </div>
             </Row>
             <Row>
-                <Col sm={8} md={8} lg={8}>
-                    <ActiveApp
-                        activeContainerId={activeContainerId}
-                        navigatorProps={{ setTextId: setTextId, navbarHeight: height ?? 0, theme: theme }}
-                    />
-                </Col>
-                <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${height ?? 0}px)` }}>
-                    <Info textId={textId} />
-                </Col>
+                <ActiveApp
+                    activeContainerId={activeContainerId}
+                    navigatorProps={{ navbarHeight: height ?? 0, theme: theme }}
+                />
             </Row>
         </Container>
     )

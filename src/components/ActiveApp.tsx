@@ -17,9 +17,9 @@ const ActiveApp = ({ activeContainerId, navigatorProps }: { activeContainerId: S
             break;
     }
     return (
-        <div>
+        <>
             {activeContainer}
-        </div>
+        </>
     )
 }
 
