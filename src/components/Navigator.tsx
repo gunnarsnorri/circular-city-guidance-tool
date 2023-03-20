@@ -267,8 +267,10 @@ export default function Navigator(
                     cy.off("select", "node")
                     cy.on("select", "node", onSelect)
                     cy.off("select", "edge")
-                    cy.on("select", "edge", (event) => {
+                    cy.on("select", "edge", (event: cytoscape.EventObject) => {
                         setTextId("default");
+                        const edge: cytoscape.EdgeSingular = event.target;
+                        edge.unselect();
                         cy.json({ elements: elements });
                     })
                 }}
