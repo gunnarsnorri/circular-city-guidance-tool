@@ -1,1 +1,4 @@
 # Treatment of Rainwater
+Before rainwater can be reused, treatment steps may be necessary. The main pollution of precipitation occurs when it comes into contact with the runoff surface (e.g. rooftops, streets). NBS provide adequate treatment processes. Specifically, by changing harmful or undesirable physical and chemical properties of rainwater by removing harmful and undesirable substances and living organisms. NBS which address (waste)water treatment by processes such as sedimentation, filtration, microbiological treatment and degradation of contaminants or water recovery, enable this service.  
+
+While rainwater treatment is an important process for ensuring that collected rainwater is safe and suitable for its intended use, it is important to carefully assess local conditions and consider the limitations and challenges associated with treatment before implementing a rainwater collection and treatment system. 
