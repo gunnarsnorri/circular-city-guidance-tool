@@ -138,13 +138,23 @@ export default function Navigator(
 
     const collapseConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
-            edge.addClass("collapsed");
+            if (node.data().nodeType === NodeType.Unit) {
+                edge.addClass("hidden")
+            }
+            else
+                edge.addClass("collapsed");
         })
+
     }
 
     const expandConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
-            edge.removeClass("collapsed");
+            if (node.data().nodeType === NodeType.Unit) {
+                edge.removeClass("hidden")
+                console.log(edge)
+            }
+            else
+                edge.removeClass("collapsed");
         })
     }
 
@@ -178,7 +188,6 @@ export default function Navigator(
                 source.removeClass("collapsed");
             }
         });
-        expandConnectedEdges(node);
     }
 
     const expandRoot = (node: cytoscape.NodeSingular) => {
@@ -201,6 +210,7 @@ export default function Navigator(
     const expandNode = (node: cytoscape.NodeSingular) => {
         node.removeClass("collapsed");
         expandOuterNeighbors(node);
+        expandConnectedEdges(node);
         expandRoot(node);
     }
 
