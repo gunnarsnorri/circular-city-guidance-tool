@@ -75,7 +75,7 @@ const orderedServices: Array<NodeWithLinks> = alternatingSortByInnerCircle(servi
 const orderedUnits: Array<NodeWithLinks> = alternatingSortByInnerCircle(unitsWithLinks, orderedServices)
 
 orderedUnits.forEach((node, index) => {
-    node[0].data.degree = (index % 5) + 1;
+    node[0].data.degree = (index % 4) + 1;
 })
 
 const data: cytoscape.ElementsDefinition = getData([...orderedUCCs, ...orderedDemands, ...orderedServices, ...orderedUnits])

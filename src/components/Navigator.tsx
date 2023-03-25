@@ -138,10 +138,6 @@ export default function Navigator(
 
     const collapseConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
-            if (node.data().nodeType === NodeType.Unit) {
-                edge.addClass("hidden")
-            }
-            else
                 edge.addClass("collapsed");
         })
 
@@ -149,11 +145,6 @@ export default function Navigator(
 
     const expandConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
-            if (node.data().nodeType === NodeType.Unit) {
-                edge.removeClass("hidden")
-                console.log(edge)
-            }
-            else
                 edge.removeClass("collapsed");
         })
     }
@@ -172,6 +163,22 @@ export default function Navigator(
             if (sourceData.nodeType < nodeData.nodeType) {
                 collapseNodeAndOuterNeighbors(source);
             }
+            if (sourceData.nodeType === NodeType.Unit && !source.hasClass("hidden")) {
+                edge.addClass("hidden")
+            }
+        })
+    }
+
+    const expandUnit = (node: cytoscape.NodeSingular) => {
+        const nodeData = node.data();
+        node.connectedEdges().forEach((edge) => {
+            const source = edge.source();
+            const target = edge.target();
+            source.removeClass("hidden");
+            edge.removeClass("hidden");
+            edge.removeClass("collapsed");
+            target.removeClass("collapsed");
+            
         })
     }
 
@@ -186,6 +193,9 @@ export default function Navigator(
             }
             if (sourceData.nodeType < nodeData.nodeType) {
                 source.removeClass("collapsed");
+            }
+            if (sourceData.nodeType === NodeType.Unit && !source.hasClass("hidden")) {
+                expandUnit(source)
             }
         });
     }
