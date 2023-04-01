@@ -173,18 +173,29 @@ const unitsAndLinks: Array<NodeWithLinkIds> = [
     ["U168", "Hidden", ["S6.2.3"]],
 ]
 
-export const unitParent: cytoscape.NodeDefinition & Pannable = {
+export const outerUnitParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,
     selectable: true,
     pannable: true,
     data: {
-        id: "Unit-Parent",
+        id: "Outer-Unit-Parent",
         label: "",  // "Units",
         color: colorMapping.get(NodeType.Unit),
     },
     classes: "parent",
 }
 
-const unitsWithLinks: Array<NodeWithLinks> = unitsAndLinks.map(getCreateNode(NodeType.Unit, true, unitParent.data.id))
+export const innerUnitParent: cytoscape.NodeDefinition & Pannable = {
+    grabbable: false,
+    selectable: true,
+    pannable: true,
+    data: {
+        id: "Inner-Unit-Parent",
+        label: "",  // "Units",
+        color: colorMapping.get(NodeType.Unit),
+    },
+}
+
+const unitsWithLinks: Array<NodeWithLinks> = unitsAndLinks.map(getCreateNode(NodeType.Unit, true, outerUnitParent.data.id))
 export default unitsWithLinks;
 

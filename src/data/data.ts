@@ -2,7 +2,7 @@ import { NodeObjectWithNodeType, NodeWithLinks, NodeType, NodeWithLinkIds, color
 import uccsWithLinks, { uccParent } from "./uccs";
 import demandsWithLinks, { demandParent } from "./demands";
 import servicesWithLinks, { serviceParent } from "./services";
-import unitsWithLinks, { unitParent } from "./units";
+import unitsWithLinks, { innerUnitParent, outerUnitParent } from "./units";
 import cytoscape from "cytoscape";
 import { alternatingSort, alternatingSortByInnerCircle, getDescendantCount } from "./order";
 
@@ -40,7 +40,7 @@ export function linkNodesToSource(source: string, hide: boolean): (target: strin
     return linkCb;
 }
 
-export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: string): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
+export function getCreateNode(nodeType: NodeType, collapsed: boolean, parent?: string, parents?: [string, string]): (nodeWithLinkIds: NodeWithLinkIds) => NodeWithLinks {
     function createNode(nodeWithLinkIds: NodeWithLinkIds): NodeWithLinks {
         let hidden = nodeWithLinkIds[1] === "Hidden";
         const nodeObject: NodeObjectWithNodeType = {
@@ -80,6 +80,6 @@ orderedUnits.forEach((node, index) => {
 
 const data: cytoscape.ElementsDefinition = getData([...orderedUCCs, ...orderedDemands, ...orderedServices, ...orderedUnits])
 
-data.nodes.push(uccParent, demandParent, serviceParent, unitParent);
+data.nodes.push(uccParent, demandParent, serviceParent, outerUnitParent, innerUnitParent);
 
 export default data;

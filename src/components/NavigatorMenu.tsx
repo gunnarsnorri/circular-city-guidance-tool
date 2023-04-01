@@ -1,9 +1,9 @@
-import { Core } from 'cytoscape';
+import cytoscape, { Core } from 'cytoscape';
 import { CSSProperties } from 'react';
 import { Button } from 'react-bootstrap';
 import { TfiZoomIn, TfiZoomOut, TfiHome, TfiFullscreen } from 'react-icons/tfi'
 
-const NavigatorMenu = ({ cy, style, theme }: { cy: Core | null, style: CSSProperties, theme: string }) => {
+const NavigatorMenu = ({ cy, elements, style, theme }: { cy: Core | null, elements: Array<cytoscape.ElementDefinition>, style: CSSProperties, theme: string }) => {
     const adjustZoom = (zoom: number) => cy?.zoom(cy?.zoom() / (1 -zoom))
     return (
         <div style={style}>
@@ -13,7 +13,7 @@ const NavigatorMenu = ({ cy, style, theme }: { cy: Core | null, style: CSSProper
             <Button variant={theme} size='lg' onClick={() => adjustZoom(-0.15)}>
                 <TfiZoomOut />
             </Button>
-            <Button variant={theme} size='lg' onClick={() => cy?.fit(cy.$("#Service-Parent"))}>
+            <Button variant={theme} size='lg' onClick={() => cy?.json({ elements: elements })}>
                 <TfiHome />
             </Button>
             <Button variant={theme} size='lg' onClick={() => cy?.fit()}>

@@ -63,12 +63,20 @@ export default function Navigator(
 
     const makeSVGDonut = (node: cytoscape.NodeSingular) => {
         const parser = new DOMParser();
-        const center_x = node.width() / 2;
-        const center_y = node.height() / 2;
-        const child_radius = node.children()[0].width() / 2
-        const radius = (node.width() + node.height()) / 4 - child_radius;
-        const stroke_width = child_radius * 2.0;
-        const svgStr = `<circle class="donut-segment" cx="${center_x}" cy="${center_y}" r="${radius}" fill="transparent" stroke="${node.data().color}" stroke-width="${stroke_width}"></circle>`;
+        const centerX = node.width() / 2;
+        const centerY = node.height() / 2;
+        const childRadius = node.children()[0].width() / 2
+        let radius = (node.width() + node.height()) / 4 - childRadius;
+        let stroke_width = childRadius * 2.0;
+        if (node.id() === "Outer-Unit-Parent") {
+            const innerUnitParent = node.cy().$("#Inner-Unit-Parent")
+            const outerRadius = radius;
+            const innerRadius = (innerUnitParent.width() + innerUnitParent.height()) / 4 - childRadius;
+            radius = (outerRadius + innerRadius) / 2;
+            stroke_width = (outerRadius - innerRadius) / 2;
+            console.log(outerRadius, innerRadius, radius, stroke_width)
+        }
+        const svgStr = `<circle class="donut-segment" cx="${centerX}" cy="${centerY}" r="${radius}" fill="transparent" stroke="${node.data().color}" stroke-width="${stroke_width}"></circle>`;
         let svgText = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg><svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='${node.width()}' height='${node.height()}'>${svgStr}</svg>`;
         return parser.parseFromString(svgText, 'text/xml').documentElement;
     }
@@ -281,6 +289,7 @@ export default function Navigator(
                     />
                     <NavigatorMenu
                         cy={cy}
+                        elements={elements}
                         style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }}
                         theme={theme} />
                 </div>
