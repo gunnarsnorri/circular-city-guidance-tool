@@ -7,7 +7,7 @@ import cytoscape from 'cytoscape';
 import { NodeType } from '../interfaces/DataInterface';
 import NavigatorMenu from './NavigatorMenu';
 import { NavigatorProps } from '../interfaces/ComponentProps'
-import { Col, Container } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import Info from './Info';
 
 let firstTime = true;

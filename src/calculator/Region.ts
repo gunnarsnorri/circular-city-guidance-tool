@@ -11,6 +11,8 @@ import UK from "./regions/UK.json";
 
 interface regionData {
     monthlyRainfall?: Array<number>;
+    wasteWater?: number;
+    greyWater?: number;
 }
 
 interface regions {
