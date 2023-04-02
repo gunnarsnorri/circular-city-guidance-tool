@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import WasteWaterCalculator from "./calculators/WasteWaterCalculator";
 import { allRegionData } from "../calculator/Region";
 import { useState } from "react";
+import AlternativeNutrientsCollectionCalculator from "./calculators/AlternativeNutrientsCollection";
 
 export default function Calculators() {
     const [region, setRegion] = useState<string | undefined>(undefined);
@@ -27,6 +28,7 @@ export default function Calculators() {
             </Form>
             <RainWaterCalculator region={region} />
             <WasteWaterCalculator region={region} />
+            <AlternativeNutrientsCollectionCalculator region={region} />
         </Stack>
     )
 }

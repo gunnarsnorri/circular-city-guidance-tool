@@ -4,7 +4,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import MonthlyTable from "../MonthlyTable";
 import { allRegionData } from "../../calculator/Region";
 
-export default function WasteWaterCalculator({ region }: { region: string | undefined }) {
+export default function AlternativeNutrientsCollectionCalculator({ region }: { region: string | undefined }) {
     const [personCount, setPersonCount] = useState<number>(0);
     const onClick = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
@@ -14,15 +14,19 @@ export default function WasteWaterCalculator({ region }: { region: string | unde
         const target = event.target as HTMLInputElement;
         setPersonCount(target.valueAsNumber);
     };
-    const monthlyWasteWater = Array<number>(12);
-    const monthlyGreyWater = Array<number>(12);
+    const monthlyBlackWater = Array<number>(12);
+    const monthlyYellowWater = Array<number>(12);
+    const monthlyBrownWater = Array<number>(12);
     if (region !== undefined && allRegionData[region] !== undefined) {
         const regionData = allRegionData[region];
-        if (regionData.wasteWater !== undefined) {
-            monthlyWasteWater.fill(30 * personCount * regionData.wasteWater);
+        if (regionData.blackWater !== undefined) {
+            monthlyBlackWater.fill(30 * personCount * regionData.blackWater);
         }
-        if (regionData.greyWater !== undefined) {
-            monthlyGreyWater.fill(30 * personCount * regionData.greyWater);
+        if (regionData.yellowWater !== undefined) {
+            monthlyYellowWater.fill(30 * personCount * regionData.yellowWater);
+        }
+        if (regionData.brownWater !== undefined) {
+            monthlyBrownWater.fill(30 * personCount * regionData.brownWater);
         }
     }
     return (
@@ -38,8 +42,9 @@ export default function WasteWaterCalculator({ region }: { region: string | unde
             </Form>
             <MonthlyTable columns={
                 [
-                    { valueName: "Waste Water", unit: "L", monthlyValues: monthlyWasteWater },
-                    { valueName: "Grey Water", unit: "L", monthlyValues: monthlyGreyWater }
+                    { valueName: "Black Water", unit: "L", monthlyValues: monthlyBlackWater },
+                    { valueName: "Yellow Water", unit: "L", monthlyValues: monthlyYellowWater },
+                    { valueName: "Brown Water", unit: "L", monthlyValues: monthlyBrownWater }
                 ]
             } />
         </Stack>

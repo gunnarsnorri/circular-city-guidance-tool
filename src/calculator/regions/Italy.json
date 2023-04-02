@@ -1,4 +1,7 @@
 {
   "wasteWater": 180,
-  "greyWater": 126
+  "greyWater": 126,
+  "blackWater": 54,
+  "yellowWater": 2,
+  "brownWater": 20
 }

@@ -1,5 +1,8 @@
 {
   "monthlyRainfall": [39, 37, 52, 51, 75, 79, 82, 72, 74, 50, 49, 43],
   "wasteWater": 130,
-  "greyWater": 60
+  "greyWater": 60,
+  "blackWater": 70,
+  "yellowWater": 1,
+  "brownWater": 11
 }

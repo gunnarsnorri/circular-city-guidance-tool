@@ -13,6 +13,9 @@ interface regionData {
     monthlyRainfall?: Array<number>;
     wasteWater?: number;
     greyWater?: number;
+    blackWater?: number;
+    yellowWater?: number;
+    brownWater?: number;
 }
 
 interface regions {
