@@ -16,6 +16,7 @@ interface regionData {
     blackWater?: number;
     yellowWater?: number;
     brownWater?: number;
+    kitchenWaste?: number;
 }
 
 interface regions {
