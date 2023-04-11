@@ -22,9 +22,7 @@ export default function MainNavbar({ setActiveContainerId, mode, setPreferredThe
             <Navbar.Collapse id="responsive-navbar-nav">
             <Nav defaultActiveKey="1" onSelect={handleSelect}>
                 <Nav.Link eventKey="1">Navigator</Nav.Link>
-                <NavDropdown title="Calculators" id="calculator-dropdown">
-                    <NavDropdown.Item eventKey="2.1">Water</NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Link eventKey="2">Calculators</Nav.Link>
             </Nav>
             <Nav className="ms-auto">
                 <DarkModeDropdown mode={mode} setPreferredTheme={setPreferredTheme}/>

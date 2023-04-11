@@ -7,7 +7,7 @@ const ActiveApp = ({ activeContainerId, navigatorProps }: { activeContainerId: S
     const calculator = Calculators();
     let activeContainer: JSX.Element = navigator;
     switch (activeContainerId) {
-        case "2.1":
+        case "2":
             if (activeContainer !== calculator)
                 activeContainer = calculator
             break;
