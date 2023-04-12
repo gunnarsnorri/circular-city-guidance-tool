@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   navigator:
     image: "ghcr.io/gunnarsnorri/circular-city-guidance-tool:production"
@@ -6,6 +7,9 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.scope=circular-city-guidance-tool-production"
   watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 300 --scope circular-city-guidance-tool-production
     labels:
       - "com.centurylinklabs.watchtower.scope=circular-city-guidance-tool-production"
