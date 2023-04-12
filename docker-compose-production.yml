@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  navigator:
+  navigator_production:
     image: "ghcr.io/gunnarsnorri/circular-city-guidance-tool:production"
     ports:
       - 3001:80
