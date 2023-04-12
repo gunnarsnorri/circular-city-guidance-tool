@@ -7,8 +7,9 @@ import { allRegionData } from "../calculator/Region";
 import { useState } from "react";
 import AlternativeNutrientsCollectionCalculator from "./calculators/AlternativeNutrientsCollection";
 import AlternativeNutrientsRevalorisationCalculator from "./calculators/AlternativeNutrientsRevalorisation";
+import BiomassRecoveryCalculatorSelection from "./calculators/BiomassRecoveryCalculator";
 
-export default function Calculators() {
+export default function Calculators(theme: string) {
     const [region, setRegion] = useState<string | undefined>(undefined);
     const onChange = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
@@ -54,6 +55,12 @@ export default function Calculators() {
                     <Accordion.Header>Alternative Nutrients Revalorisation</Accordion.Header>
                     <Accordion.Body>
                         <AlternativeNutrientsRevalorisationCalculator region={region} />
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="4">
+                    <Accordion.Header>Biomass Recovery</Accordion.Header>
+                    <Accordion.Body>
+                        <BiomassRecoveryCalculatorSelection theme={theme} />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>

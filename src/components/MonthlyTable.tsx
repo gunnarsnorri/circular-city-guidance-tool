@@ -9,7 +9,7 @@ export default function MonthlyTable(props: MonthlyTableProps) {
                 <tr>
                     <th>Month</th>
                     {props.columns.map((column) => {
-                        return <th>{column.valueName} ({column.unit})</th>
+                        return <th key={`col-${column.valueName}`}>{column.valueName} ({column.unit})</th>
                     })}
                 </tr>
             </thead>
@@ -19,7 +19,7 @@ export default function MonthlyTable(props: MonthlyTableProps) {
                         <tr key={month}>
                             <td>{month}</td>
                             {props.columns.map((column) => {
-                                return <td>{column.monthlyValues[index]}</td>
+                                return <td key={`${month}-${column.valueName}`}>{column.monthlyValues[index]}</td>
                             })}
                         </tr>
                     )
@@ -27,7 +27,7 @@ export default function MonthlyTable(props: MonthlyTableProps) {
                 <tr key="total">
                     <th>Total</th>
                             {props.columns.map((column) => {
-                                return <th>{column.monthlyValues.reduce((a, b) => a + b, 0)} {column.unit}</th>
+                                return <th key={`total-${column.valueName}`}>{column.monthlyValues.reduce((a, b) => a + b, 0)} {column.unit}</th>
                             })}
                 </tr>
             </tbody>
