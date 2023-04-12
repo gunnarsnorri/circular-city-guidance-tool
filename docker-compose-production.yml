@@ -6,7 +6,7 @@ services:
       - 3001:80
     labels:
       - "com.centurylinklabs.watchtower.scope=circular-city-guidance-tool-production"
-  watchtower:
+  watchtower_production:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
