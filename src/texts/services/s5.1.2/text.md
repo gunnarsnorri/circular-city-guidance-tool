@@ -1,1 +1,2 @@
 # Production of Inedible Biomass
+Green spaces and functional nature-based solutions can provide a source of diverse types of biomass, which can serve as feedstock for the production of materials, platform chemicals or energy. Types of biomass typically include lignocellulosic (woody) branches from pruning trees and bushes, cut grass from lawns, and clippings from flower beds or multifunctional NBS such as raingardens, green roofs or constructed wetlands. Non-edible plant parts of food crops are another source of lignocellulosic biomass. 
