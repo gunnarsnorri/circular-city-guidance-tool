@@ -1,1 +1,3 @@
 # UHI Mitigation / Reduction
+Urban areas are characterised by grey areas which adsorbe the incoming energy from the sun (solar radiation) and cause so called urban heat islands (UHI). With the effect of increasing temperatures and no significant reduction during the night UHI cause server health issues for inhabitants. Furthermore the main countermeaseure is the installation of AC units increasing the urban energy consumption without addressing the actual problem.
+Nature-based solutions and their plants are an important measure to mitigate this challenge. The greenery can convert the incoming solar radiation by transpiration, namely the conversion of water to water vapor. This has a significant effect of the cooling in urban areas.
