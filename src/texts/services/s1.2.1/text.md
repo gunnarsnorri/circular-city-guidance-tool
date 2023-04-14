@@ -1,1 +1,6 @@
 # Detention
+The service “Rainwater detention” is a critical component of sustainable rainwater management, particularly in urban areas. Detention refers to the temporary storage of rainwater on or near the surface, which allows it to slowly infiltrate into the ground or be released at a controlled rate, rather than rapidly flowing off into stormwater drains or causing flooding. Some of the key roles of rainwater detention in sustainable rainwater management are:
+1.	Reduce flood risk: By slowing down the rate of runoff, rainwater detention can help to reduce the risk of flooding in urban areas. This is particularly important in areas with impervious surfaces, such as parking lots, roads, and buildings, which can quickly generate large volumes of runoff during heavy rain events.
+2.	Recharge groundwater: Rainwater detention allows rainwater to slowly infiltrate into the ground, which can help to recharge groundwater aquifers. 
+3.	Improve water quality: Rainwater detention can help to improve the quality of stormwater runoff by allowing pollutants to settle out or be filtered by vegetation or other treatment systems. 
+4.	Support NBS systems: Rainwater detention is often incorporated into NBS systems that provide multiple benefits, including improved aesthetics, habitat for wildlife, and reduced heat island effects.
