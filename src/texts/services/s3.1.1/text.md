@@ -1,1 +1,2 @@
 # Collection / Separation of Wastewater
+Wastewater collection at the household level can be performed at different degrees of separation. Available sources for seperation are wastewater and greywater as well as urin seperation. For nurtrien recovery higher concentrations of the wastestreams are prefereable. To reach higher concentrations and increase the treatment processes, advanced technologies can be employed, such as vacuum toilets. Collected streams get conveyed to dedicated storge vaults 
