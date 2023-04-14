@@ -1,1 +1,2 @@
-# Revalorization  of FW
+# Revalorization  of Food Wast
+The collected kitchen solid residues undergo composting, a process where selected microorganisms process the material, transforming it and rendering its nutrients more bioavailable, while greatly reducing the pathogens content. The semi-liquid (i.e., ground) food residues can either be added to the composting process, thus managing the compost humidity, or be conveyed to the wastewater stream, to increase the nutrient concentrations for reuse purposes. With the average of a yearly production of 73 kg of dry matter per capita containing 0.9 % of nitrogen and 0.1 % of phosphorus, the revalorisation of food residues can allow the fertilisation of 22 m2 of productive crops.
