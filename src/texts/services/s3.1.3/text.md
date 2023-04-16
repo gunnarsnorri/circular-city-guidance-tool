@@ -1,1 +1,2 @@
 # Storage
+Since fertilisation is performed in specific seasons throughout the year, the recovered materials require a storage location. In the case of urine, storage can coincide with the first treatment step (stabilisation). Storage closed tanks and dedicated areas will be required: depending on the degree of resource separation, the space demand can vary, from 0.02 m3(e.g., if N and P are completely recovered as salts), to 0.5 m3 (e.g., for urine stabilisation) to 6.5 m3 (e.g., for bulk wastewater stabilisation) per capita per year.

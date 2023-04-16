@@ -1,13 +1,17 @@
 # Circularity with NBS
 # a guidance support system
 
-Welcome
+## Welcome Circular City traveller!
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus sapien nunc, accumsan euismod tortor auctor ac. Nullam vitae suscipit libero, non porttitor dui. Donec ornare hendrerit vehicula. Etiam quis orci metus. Quisque suscipit, arcu sit amet pharetra euismod, sapien purus ornare eros, nec vehicula lectus nulla quis risus. Pellentesque sed vulputate purus, non vehicula nisi. Quisque nec fringilla massa, sed congue urna. Nulla quis elementum diam. Maecenas vestibulum viverra libero ultricies posuere. Mauris ut massa eu velit auctor semper. Quisque sollicitudin urna eu metus egestas, a gravida turpis tincidunt. Suspendisse luctus turpis vitae pellentesque dignissim. Nunc sed ex urna.
+This guidance tool relies on 5 levels of information (coloured circles). The inner one (**yellow**) represents five different urban circularity challenges:
+-	Restoring and maintaining the water cycle
+-	Water and waste treatment and recovery
+-	Nutrient recovery and reuse
+-	Energy efficiency and recovery
+-	Food and biomass production
 
-Aliquam nulla turpis, iaculis ac quam in, malesuada interdum dolor. Duis vitae tempor elit. Suspendisse vel auctor nulla. Donec sed lectus interdum, ultricies est sit amet, rhoncus est. Sed vitae leo quis nulla bibendum pellentesque eu ac nibh. Nunc blandit vehicula lectus id vulputate. Pellentesque varius ultricies lectus quis vehicula. Etiam eu pellentesque lacus, nec laoreet orci. Etiam quis imperdiet mi, id suscipit urna. Vestibulum iaculis venenatis diam, at suscipit est vestibulum quis. Praesent ut tortor dolor. Proin nec tortor neque.
+In order to specifically adress a certain urban circularity challenge demands for the implementation are used (**red**)
+On the next level (**blue**) a series of services were identified that are needed to address a given demand, and that will be provided by different nature-based solutions units (**green**).
+The guidance tool was designed so that a user can start at any point, on a demand, on a service, or in an NBS and will show the interconnections.
 
-Aliquam nulla turpis, iaculis ac quam in, malesuada interdum dolor. Duis vitae tempor elit. Suspendisse vel auctor nulla. Donec sed lectus interdum, ultricies est sit amet, rhoncus est. Sed vitae leo quis nulla bibendum pellentesque eu ac nibh. Nunc blandit vehicula lectus id vulputate. Pellentesque varius ultricies lectus quis vehicula. Etiam eu pellentesque lacus, nec laoreet orci. Etiam quis imperdiet mi, id suscipit urna. Vestibulum iaculis venenatis diam, at suscipit est vestibulum quis. Praesent ut tortor dolor. Proin nec tortor neque.
-
-
-Aliquam nulla turpis, iaculis ac quam in, malesuada interdum dolor. Duis vitae tempor elit. Suspendisse vel auctor nulla. Donec sed lectus interdum, ultricies est sit amet, rhoncus est. Sed vitae leo quis nulla bibendum pellentesque eu ac nibh. Nunc blandit vehicula lectus id vulputate. Pellentesque varius ultricies lectus quis vehicula. Etiam eu pellentesque lacus, nec laoreet orci. Etiam quis imperdiet mi, id suscipit urna. Vestibulum iaculis venenatis diam, at suscipit est vestibulum quis. Praesent ut tortor dolor. Proin nec tortor neque.
+This tool, and the framework behind it, is the result of a long and iterative process caried out by the [COST Action Circular Cities](www.circular-city.eu) 

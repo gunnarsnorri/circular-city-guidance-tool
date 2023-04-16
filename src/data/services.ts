@@ -19,7 +19,7 @@ const servicesAndLinks: Array<NodeWithLinkIds> = [
     ["S3.2.3", "Storage of FW", ["D3.2"]],
     ["S5.1.1", "Production of Edible Biomass", ["D5.1"]],
     ["S5.1.2", "Production of Inedible Biomass", ["D5.1"]],
-    ["S5.2.1", "Revalorisation of Soil", ["D5.2"]],
+    // ["S5.2.1", "Revalorisation of Soil", ["D5.2"]],
     ["S5.3.1", "Biomass Recovery", ["D5.3"]],
     ["S6.1.1", "Microclimate Regulation", ["D6.1"]],
     ["S6.2.1", "Increase Building Insulation", ["D6.2"]],

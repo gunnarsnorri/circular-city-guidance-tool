@@ -1,1 +1,2 @@
-# Storage of FW
+# Storage of Food Waste
+Since fertilisation is performed in specific seasons throughout the year, the recovered materials require a storage location. Closed or sealed vaults and dedicated areas are required, with a space demand depending on the degree of residue recovery, which, in turn, depends on the subjects involved. Considering an average yearly production of 72 kg of dry matter per capita, the yearly required volume would be 0.2 m3 per person.

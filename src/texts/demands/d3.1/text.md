@@ -1,1 +1,3 @@
 # Alt. Nutrient Source from Wastewater
+Based on the food intake and nutritional uptake in the body, human excreta contain valuable nutrients such as carbon, nitrogen, and phosphorous. Therefore, resource recovery from nutrient-rich wastewater is an important aspect of implementing circular economy principles.  
+Household wastewater can be treated in a way that enables the recovery of nutrients and their later employment for fertilisation. Thus offering an appealing solution for closing the nutrient cycle. At the same time, other fundamental resources, such as water and biogas, can be obtained in this process, increasing the overall reuse potential from wastewater towards a holistic circularity application. 

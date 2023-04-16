@@ -1,1 +1,2 @@
-# Collection of FW
+# Collection of Food Waste
+The collection/separation service provides a collection of food residues and leftovers, using dedicated bins, or disposal from kitchen grinders. This yields either solid or semi-liquid streams, both highly concentrated in compounds of interest that would otherwise get lost. Collected streams are either conveyed to composting vaults or diverted into the wastewater treatment train.

@@ -1,1 +1,2 @@
 # Alt. Nutrient Source from Bio-waste
+Household kitchen residues contain many valuable components, in particular nitrogen and phosphorus which are lost with the disposal of food processing scraps, peels, kernels, etc. Kitchen residues represent a valuable resource that can be treated and subsequentially re-enter the food chain as fertiliser, with the added potential of biogas production, promoting circularity within the urban context. 
