@@ -8,7 +8,7 @@ const demandsAndLinks: Array<NodeWithLinkIds> = [
     ["D3.1", "Alt. Nutrient Source from Wastewater", ["UCC3"]],
     ["D3.2", "Alt. Nutrient Source from Bio-waste", ["UCC3"]],
     ["D5.1", "Food and Biomass Production", ["UCC5"]],
-    ["D5.2", "Land Restoration", ["UCC5"]],
+    // ["D5.2", "Land Restoration", ["UCC5"]],
     ["D5.3", "Biomass Waste Harvesting", ["UCC5"]],
     ["D6.1", "UHI Mitigation / Reduction", ["UCC6"]],
     ["D6.2", "Increase Energy Sufficiency", ["UCC6"]],

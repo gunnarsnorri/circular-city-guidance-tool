@@ -134,7 +134,7 @@ export default function Navigator(
         }
     ];
 
-    const elements = [...data.nodes, ...data.edges];
+    const elements: Array<cytoscape.ElementDefinition> = [...data.nodes, ...data.edges];
 
     const collapseConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
@@ -282,7 +282,10 @@ export default function Navigator(
                     <NavigatorMenu
                         cy={cy}
                         style={{ top: navbarHeight, left: 0, position: "absolute", zIndex: 2 }}
-                        theme={theme} />
+                        theme={theme}
+                        setTextId={setTextId}
+                        elements={elements}
+                        />
                 </div>
             </Col >
             <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${navbarHeight ?? 0}px)` }}>
