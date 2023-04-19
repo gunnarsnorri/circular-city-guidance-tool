@@ -65,9 +65,16 @@ export default function Navigator(
         const parser = new DOMParser();
         const center_x = node.width() / 2;
         const center_y = node.height() / 2;
-        const child_radius = node.children()[0].width() / 2
-        const radius = (node.width() + node.height()) / 4 - child_radius;
-        const stroke_width = child_radius * 2.0;
+        const children = node.children()
+        const child_radius = children[0].width() / 2
+        let radius = (node.width() + node.height()) / 4 - child_radius;
+        let stroke_width = child_radius * 2.0;
+
+        if (node.data().id == "Unit-Parent") {
+            const child_diff = children[1].position().y - children[0].position().y
+            radius = radius - child_diff / 2;
+            stroke_width = stroke_width * 2 + (child_diff - child_radius) / 2;
+        }
         const svgStr = `<circle class="donut-segment" cx="${center_x}" cy="${center_y}" r="${radius}" fill="transparent" stroke="${node.data().color}" stroke-width="${stroke_width}"></circle>`;
         let svgText = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg><svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='${node.width()}' height='${node.height()}'>${svgStr}</svg>`;
         return parser.parseFromString(svgText, 'text/xml').documentElement;
@@ -138,14 +145,14 @@ export default function Navigator(
 
     const collapseConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
-                edge.addClass("collapsed");
+            edge.addClass("collapsed");
         })
 
     }
 
     const expandConnectedEdges = (node: cytoscape.NodeSingular) => {
         node.connectedEdges().forEach((edge) => {
-                edge.removeClass("collapsed");
+            edge.removeClass("collapsed");
         })
     }
 
@@ -178,7 +185,7 @@ export default function Navigator(
             edge.removeClass("hidden");
             edge.removeClass("collapsed");
             target.removeClass("collapsed");
-            
+
         })
     }
 
@@ -305,7 +312,7 @@ export default function Navigator(
                         theme={theme}
                         setTextId={setTextId}
                         elements={elements}
-                        />
+                    />
                 </div>
             </Col >
             <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${navbarHeight ?? 0}px)` }}>
