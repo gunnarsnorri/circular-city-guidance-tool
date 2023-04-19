@@ -1,16 +1,9 @@
 import cytoscape from "cytoscape";
 import { NodeType, NodeWithLinks, NodeWithLinkIds, colorMapping, Pannable } from "../interfaces/DataInterface";
-import { getCreateNode } from "./data";
+import { getCreateNode, nodeDataToNodeWithLinks } from "./data";
+import uccs from "./json/uccs.json";
 
-const uccNames: Array<NodeWithLinkIds> = [
-    ["UCC1", "Restoring and Maintaining the Water Cycle", []],
-    ["UCC2", "Water and Waste Treatment and Recovery", []],
-    ["UCC3", "Nutrient Recovery and Reuse", []],
-    // ["UCC4", "UCC4", []],
-    ["UCC5", "Food and Biomass Production", []],
-    ["UCC6", "Energy Efficiency and Recovery", []],
-    // ["UCC7", "UCC7", []]
-]
+const uccNames: Array<NodeWithLinkIds> = uccs.map(nodeDataToNodeWithLinks);
 
 export const uccParent: cytoscape.NodeDefinition & Pannable = {
     grabbable: false,

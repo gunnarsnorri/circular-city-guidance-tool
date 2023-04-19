@@ -1,10 +1,14 @@
-import { NodeObjectWithNodeType, NodeWithLinks, NodeType, NodeWithLinkIds, colorMapping } from "../interfaces/DataInterface";
+import { NodeObjectWithNodeType, NodeWithLinks, NodeType, NodeWithLinkIds, colorMapping, NodeData } from "../interfaces/DataInterface";
 import uccsWithLinks, { uccParent } from "./uccs";
 import demandsWithLinks, { demandParent } from "./demands";
 import servicesWithLinks, { serviceParent } from "./services";
 import unitsWithLinks, { unitParent } from "./units";
 import cytoscape from "cytoscape";
 import { alternatingSort, alternatingSortByInnerCircle, getDescendantCount } from "./order";
+
+export function nodeDataToNodeWithLinks(nodeData: NodeData): NodeWithLinkIds {
+    return [nodeData.id, nodeData.name, nodeData.parents]
+}
 
 const getNodes = (nodes_with_links: Array<NodeWithLinks>) => {
     return nodes_with_links.map(function (nodeWithLinks: NodeWithLinks) {
@@ -75,7 +79,7 @@ const orderedServices: Array<NodeWithLinks> = alternatingSortByInnerCircle(servi
 const orderedUnits: Array<NodeWithLinks> = alternatingSortByInnerCircle(unitsWithLinks, orderedServices)
 
 orderedUnits.forEach((node, index) => {
-    node[0].data.degree = (index % 5) + 1;
+    node[0].data.degree = (index % 2) + 1;
 })
 
 const data: cytoscape.ElementsDefinition = getData([...orderedUCCs, ...orderedDemands, ...orderedServices, ...orderedUnits])

@@ -1,0 +1,2 @@
+# Organoponic
+Organoponic/bioponic is an emerging soilless technology for nutrients recovery that links organic vegetable production to organic effluent remediation or organic waste recycling (adapted from [73]). Bioponic production describes a contained and controlled growing system in which plants in growing media derive nutrients from natural animal, plant, and mineral substances that are released by the biological activity of microorganisms [74].

@@ -1,0 +1,2 @@
+# Wall-based green facade
+A wall-based green facade (or green wall) comprises panels and technical structures (3D frames filled with technical substrate) that are seeded or planted. These panels and structures are fixed onto facades or walls or can be designed as stand-alone system and allow the placement of plants and substrate on the entire surface. Some systems allow the removal of panels during winter time. Compared to soil/ground-based green facades a wider plant range can be applied for wall-based green facades. Adapted

@@ -1,0 +1,2 @@
+# Infiltration basin
+An infiltration basin is a surface storage basin designed for short-term temporal water storage by using an existing natural depression in the ground or by creating a new one. After a heavy rain, the water fills up the depression. Then, the water soaks into the ground or drains to the sewage system. If there is no heavy rainfall, the area is dry and could be used as a green area.

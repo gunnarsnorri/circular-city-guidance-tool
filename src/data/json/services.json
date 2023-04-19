@@ -1,0 +1,157 @@
+[
+  {
+    "id": "S1.1.1",
+    "name": "Collection/Conveyance",
+    "parents": [
+      "D1.1"
+    ]
+  },
+  {
+    "id": "S1.1.2",
+    "name": "Treatment (RW)",
+    "parents": [
+      "D1.1",
+      "D1.2"
+    ]
+  },
+  {
+    "id": "S1.1.3",
+    "name": "Storage (RW)",
+    "parents": [
+      "D1.1"
+    ]
+  },
+  {
+    "id": "S1.2.1",
+    "name": "Detention",
+    "parents": [
+      "D1.2"
+    ]
+  },
+  {
+    "id": "S1.2.2",
+    "name": "Infiltration",
+    "parents": [
+      "D1.2"
+    ]
+  },
+  {
+    "id": "S1.2.3",
+    "name": "Evapotranspiration",
+    "parents": [
+      "D1.2"
+    ]
+  },
+  {
+    "id": "S2.1.1",
+    "name": "Collection/Separation",
+    "parents": [
+      "D2.1"
+    ]
+  },
+  {
+    "id": "S2.1.2",
+    "name": "Treatment (WW)",
+    "parents": [
+      "D2.1"
+    ]
+  },
+  {
+    "id": "S2.1.3",
+    "name": "Storage (WW)",
+    "parents": [
+      "D2.1"
+    ]
+  },
+  {
+    "id": "S3.1.1",
+    "name": "Collection (WW)",
+    "parents": [
+      "D3.1"
+    ]
+  },
+  {
+    "id": "S3.1.2",
+    "name": "Revalorization (WW)",
+    "parents": [
+      "D3.1"
+    ]
+  },
+  {
+    "id": "S3.1.3",
+    "name": "Storage",
+    "parents": [
+      "D3.1"
+    ]
+  },
+  {
+    "id": "S3.2.1",
+    "name": "Collection (FW)",
+    "parents": [
+      "D3.2"
+    ]
+  },
+  {
+    "id": "S3.2.2",
+    "name": "Revalorization (FW)",
+    "parents": [
+      "D3.2"
+    ]
+  },
+  {
+    "id": "S3.2.3",
+    "name": "Storage",
+    "parents": [
+      "D3.2"
+    ]
+  },
+  {
+    "id": "S5.1.1",
+    "name": "Production of edible BM",
+    "parents": [
+      "D5.1"
+    ]
+  },
+  {
+    "id": "S5.1.2",
+    "name": "Production of non-edible BM",
+    "parents": [
+      "D5.1"
+    ]
+  },
+  {
+    "id": "S5.3.1",
+    "name": "Biomass recovery",
+    "parents": [
+      "D5.3"
+    ]
+  },
+  {
+    "id": "S6.1.1",
+    "name": "Microclimate regulation",
+    "parents": [
+      "D6.1"
+    ]
+  },
+  {
+    "id": "S6.2.1",
+    "name": "Increase building insulation",
+    "parents": [
+      "D6.2"
+    ]
+  },
+  {
+    "id": "S6.2.2",
+    "name": "Energy recovery from biomass",
+    "parents": [
+      "D6.2"
+    ]
+  },
+  {
+    "id": "S6.2.3",
+    "name": "Energy recovery from Wastewater",
+    "parents": [
+      "D6.2"
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "D1.1",
+    "name": "Alternative water source RW",
+    "parents": [
+      "UCC1"
+    ]
+  },
+  {
+    "id": "D1.2",
+    "name": "Sustainable rainwater management",
+    "parents": [
+      "UCC1"
+    ]
+  },
+  {
+    "id": "D2.1",
+    "name": "Alternative water source WW",
+    "parents": [
+      "UCC2"
+    ]
+  },
+  {
+    "id": "D3.1",
+    "name": "Alternative nutrient source from Wastewater",
+    "parents": [
+      "UCC3"
+    ]
+  },
+  {
+    "id": "D3.2",
+    "name": "Alternative nutrient source from Food Waste",
+    "parents": [
+      "UCC3"
+    ]
+  },
+  {
+    "id": "D5.1",
+    "name": "Food and biomass production",
+    "parents": [
+      "UCC5"
+    ]
+  },
+  {
+    "id": "D5.3",
+    "name": "Biomass waste harvesting (from all NBS)",
+    "parents": [
+      "UCC5"
+    ]
+  },
+  {
+    "id": "D6.1",
+    "name": "UHI mitigation/reduction",
+    "parents": [
+      "UCC6"
+    ]
+  },
+  {
+    "id": "D6.2",
+    "name": "Increase energy sufficiency",
+    "parents": [
+      "UCC6"
+    ]
+  }
+]
