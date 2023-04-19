@@ -1,0 +1,27 @@
+[
+  {
+    "id": "UCC1",
+    "name": "Restoring and maintaining the water cycle",
+    "parents": []
+  },
+  {
+    "id": "UCC2",
+    "name": "Water and waste treatment and recovery",
+    "parents": []
+  },
+  {
+    "id": "UCC3",
+    "name": "Nutrient recovery and reuse",
+    "parents": []
+  },
+  {
+    "id": "UCC5",
+    "name": "Food and biomass production",
+    "parents": []
+  },
+  {
+    "id": "UCC6",
+    "name": "Energy efficiency and recovery",
+    "parents": []
+  }
+]

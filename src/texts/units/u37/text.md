@@ -1,0 +1,2 @@
+# Green corridors
+Green corridors aim to renature areas of derelict infrastructure such as railway lines or along waterways and rivers, transforming them into linear parks. This NBS can be considered as a transitional area between biomes that connect neighborhoods. Green corridors can play an important role in urban green infrastructure networks and can offer niche shelter, food, and protection for the urban wildlife to survive and move from one green space patch to another. Adapted

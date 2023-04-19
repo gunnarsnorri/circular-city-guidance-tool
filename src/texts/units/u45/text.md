@@ -1,0 +1,3 @@
+# Hydroponic and soilless technologies
+Hydroponics is an agricultural method that provides soilless plant growth by applying the mixture of water and nutrient solution that is controllable and can be delivered to plants based on their needs. This system provides improved control of plant’s nutrition, efficient use of space, and the possibility of saving fertilizers. Greenhouses with hydroponic systems are seen as sustainable systems for growing food in cities with improved control of plant growth. The huge potential offered by this cultivation approach ranges from productive and qualitative advantages to environmental benefits due to higher efficiency in using water and
+nutritional resources, NO3− management, and crop quality increase. Adapted

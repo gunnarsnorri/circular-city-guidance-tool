@@ -1,0 +1,2 @@
+# Floodplain
+Floodplains aim to reduce flood risk by expanding the flood plain/water retention, thus providing additional flood space. Floodplain can be restored by excavating the lateral riverbed or by dividing the discharge into branches and by-passes, creating islands. During low water levels, these relatively flat and accessible bank areas can be used for multifunctional purposes. Floodplain restoration enables more efficient work of sewer and storm water pipe drainage systems by reducing their operational load and decreasing the need for expensive pipe solutions.

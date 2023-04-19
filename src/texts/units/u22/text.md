@@ -1,0 +1,2 @@
+# Waste stabilisation pond
+Waste stabilization ponds (WSPs) are earthen ponds designed and constructed in series, where sequential microbial metabolisms (anaerobic + facultative + aerobic) are established. WSPs utilize both physical and biological processes to remove organic materials, pollutants, and pathogens in raw wastewater. The size of the infrastructure can be comparable to a treatment wetland unit in some cases, and it can be applied also for cities. Adapted

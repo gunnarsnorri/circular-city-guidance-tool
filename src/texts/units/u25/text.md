@@ -1,0 +1,2 @@
+# Phytoremediation
+Phytoremediation refers to plant-based techniques to remediate contaminated soil and groundwater while simultaneously improving soil quality and providing ecosystem services. Phytoremediation is a cost effective, non-intrusive, and aesthetically pleasing technology that removes contaminants by applying processes and mechanisms of degradation, sequestration, or transformation. Adapted

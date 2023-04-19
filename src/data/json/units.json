@@ -1,0 +1,362 @@
+[
+  {
+    "id": "U3",
+    "name": "Filter strips",
+    "parents": [
+      "S1.1.1",
+      "S1.1.2"
+    ]
+  },
+  {
+    "id": "U4",
+    "name": "Filter drain",
+    "parents": [
+      "S1.1.1",
+      "S1.1.2"
+    ]
+  },
+  {
+    "id": "U8",
+    "name": "Bioswale",
+    "parents": [
+      "S1.1.1",
+      "S1.1.2",
+      "S1.2.2"
+    ]
+  },
+  {
+    "id": "U9",
+    "name": "Dry swale",
+    "parents": [
+      "S1.1.1"
+    ]
+  },
+  {
+    "id": "U7",
+    "name": "Bioretention cell (Rain garden)",
+    "parents": [
+      "S1.1.2",
+      "S1.2.2"
+    ]
+  },
+  {
+    "id": "U21",
+    "name": "Treatment wetland",
+    "parents": [
+      "S1.1.2",
+      "S2.1.2",
+      "S3.1.1",
+      "S5.1.2",
+      "S6.2.2"
+    ]
+  },
+  {
+    "id": "U5",
+    "name": "(Wet) Retention pond",
+    "parents": [
+      "S1.1.3",
+      "S1.2.1",
+      "S1.2.3",
+      "S2.1.3"
+    ]
+  },
+  {
+    "id": "US1",
+    "name": "Rain Water Harvesting",
+    "parents": [
+      "S1.1.3"
+    ]
+  },
+  {
+    "id": "US2",
+    "name": "Detention vaults and tanks",
+    "parents": [
+      "S1.1.3",
+      "S2.1.3",
+      "S3.1.3",
+      "S3.2.3"
+    ]
+  },
+  {
+    "id": "U17",
+    "name": "Extensive green roof",
+    "parents": [
+      "S1.2.1",
+      "S6.2.1"
+    ]
+  },
+  {
+    "id": "U18",
+    "name": "Intensive green roof",
+    "parents": [
+      "S1.2.1",
+      "S1.2.3",
+      "S2.1.2",
+      "S6.1.1",
+      "S6.2.1"
+    ]
+  },
+  {
+    "id": "U6",
+    "name": "(Dry) Detention pond",
+    "parents": [
+      "S1.2.1"
+    ]
+  },
+  {
+    "id": "U28",
+    "name": "River restoration",
+    "parents": [
+      "S1.2.1"
+    ]
+  },
+  {
+    "id": "U29",
+    "name": "Floodplain",
+    "parents": [
+      "S1.2.1"
+    ]
+  },
+  {
+    "id": "U1",
+    "name": "Infiltration basin",
+    "parents": [
+      "S1.2.2",
+      "S2.1.3"
+    ]
+  },
+  {
+    "id": "U2",
+    "name": "Infiltration trench",
+    "parents": [
+      "S1.2.2",
+      "S2.1.3"
+    ]
+  },
+  {
+    "id": "U10",
+    "name": "Tree pits",
+    "parents": [
+      "S1.2.2",
+      "S1.2.3"
+    ]
+  },
+  {
+    "id": "U11",
+    "name": "Vegetated grid pavement",
+    "parents": [
+      "S1.2.2"
+    ]
+  },
+  {
+    "id": "U13",
+    "name": "Ground-based green facade",
+    "parents": [
+      "S1.2.3",
+      "S6.1.1",
+      "S6.2.1"
+    ]
+  },
+  {
+    "id": "U14",
+    "name": "Wall-based green facade",
+    "parents": [
+      "S1.2.3",
+      "S6.1.1",
+      "S6.2.1"
+    ]
+  },
+  {
+    "id": "U15",
+    "name": "Pot-based green facade",
+    "parents": [
+      "S1.2.3",
+      "S2.1.2",
+      "S6.1.1",
+      "S6.2.1"
+    ]
+  },
+  {
+    "id": "U19",
+    "name": "Semi-intensive green roof",
+    "parents": [
+      "S1.2.3"
+    ]
+  },
+  {
+    "id": "U16",
+    "name": "Vegetated pergola",
+    "parents": [
+      "S1.2.3"
+    ]
+  },
+  {
+    "id": "US7",
+    "name": "Physical unit operations for solid/liquid separation",
+    "parents": [
+      "S2.1.1",
+      "S3.1.1",
+      "S3.2.1",
+      "S6.2.3"
+    ]
+  },
+  {
+    "id": "U26",
+    "name": "Anaerobic treatment (for nutrient, VFA & methane recovery)",
+    "parents": [
+      "S2.1.2",
+      "S3.1.1",
+      "S3.1.2",
+      "S3.2.1",
+      "S3.2.2"
+    ]
+  },
+  {
+    "id": "U22",
+    "name": "Waste stabilisation pond",
+    "parents": [
+      "S2.1.2"
+    ]
+  },
+  {
+    "id": "U25",
+    "name": "Phytoremediation",
+    "parents": [
+      "S3.1.1",
+      "S3.1.2"
+    ]
+  },
+  {
+    "id": "US3",
+    "name": "Phosphate precipitation (for P recovery)",
+    "parents": [
+      "S3.1.2",
+      "S3.2.2"
+    ]
+  },
+  {
+    "id": "US4",
+    "name": "Ammonia stripping (for N recovery)",
+    "parents": [
+      "S3.1.2",
+      "S3.2.2"
+    ]
+  },
+  {
+    "id": "U48",
+    "name": "Photo Bio Reactor",
+    "parents": [
+      "S3.1.2"
+    ]
+  },
+  {
+    "id": "US9",
+    "name": "Adsorption",
+    "parents": [
+      "S3.1.2"
+    ]
+  },
+  {
+    "id": "U23",
+    "name": "Composting",
+    "parents": [
+      "S3.2.2",
+      "S3.2.3"
+    ]
+  },
+  {
+    "id": "U49",
+    "name": "Productive garden",
+    "parents": [
+      "S3.2.2",
+      "S5.1.1"
+    ]
+  },
+  {
+    "id": "U50",
+    "name": "Urban farms and orchards",
+    "parents": [
+      "S3.2.2",
+      "S5.1.2",
+      "S6.1.1",
+      "S6.2.2"
+    ]
+  },
+  {
+    "id": "U51",
+    "name": "Urban forest",
+    "parents": [
+      "S3.2.2"
+    ]
+  },
+  {
+    "id": "U33",
+    "name": "Soil improvement and conservation",
+    "parents": [
+      "S3.2.2"
+    ]
+  },
+  {
+    "id": "U44",
+    "name": "Aquaculture",
+    "parents": [
+      "S5.1.1"
+    ]
+  },
+  {
+    "id": "U45",
+    "name": "Hydroponic and soilless technologies",
+    "parents": [
+      "S5.1.1"
+    ]
+  },
+  {
+    "id": "U46",
+    "name": "Organoponic",
+    "parents": [
+      "S5.1.1"
+    ]
+  },
+  {
+    "id": "U47",
+    "name": "Aquaponic farming",
+    "parents": [
+      "S5.1.1"
+    ]
+  },
+  {
+    "id": "U37",
+    "name": "Green corridors",
+    "parents": [
+      "S5.1.2",
+      "S5.3.1",
+      "S6.1.1",
+      "S6.2.2"
+    ]
+  },
+  {
+    "id": "U40",
+    "name": "Large urban park",
+    "parents": [
+      "S5.1.2",
+      "S5.3.1",
+      "S6.1.1",
+      "S6.2.2"
+    ]
+  },
+  {
+    "id": "U42",
+    "name": "Urban meadows",
+    "parents": [
+      "S5.1.2",
+      "S5.3.1"
+    ]
+  },
+  {
+    "id": "U39",
+    "name": "Street trees",
+    "parents": [
+      "S5.3.1"
+    ]
+  }
+]

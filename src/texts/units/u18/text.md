@@ -1,0 +1,2 @@
+# Intensive green roof
+An intensive green roof consists of vegetation (higher variety than extensive green roof) that are installed on rooftops, normally accessible for public or recreation or gardening, relaxation, and socialization purposes. This NBS is usually heavier and has a deeper substrate (more than 20 cm) as compared to extensive systems. In addition, it requires more installation and maintenance effort such as regular irrigation and fertilization, but it provides more biotopes and higher biodiversity. Adapted

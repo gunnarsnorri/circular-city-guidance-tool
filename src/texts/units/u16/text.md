@@ -1,0 +1,2 @@
+# Vegetated pergola
+A vegetated pergola uses pillars, beams, stretched textile structure, and lattices in different materials and compositions to create a growing assistance for vegetation and provide shaded areas. On this structure, an inert substrate can be installed, to be covered with seeds. Vegetated pergolas can be fixed to the facades of the buildings, on the street, or by posts fixed to the sidewalk. Adapted

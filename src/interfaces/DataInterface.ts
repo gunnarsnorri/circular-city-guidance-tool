@@ -17,6 +17,12 @@ export interface Pannable {
   pannable: boolean
 }
 
+export type NodeData = {
+  id: string;
+  name: string;
+  parents: Array<string>;
+}
+
 export type NodeWithLinkIds = [string, string, Array<string>];
 
 export type NodeWithLinks = [NodeObjectWithNodeType, Array<cytoscape.EdgeDefinition>]

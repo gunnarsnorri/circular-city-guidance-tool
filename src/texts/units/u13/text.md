@@ -1,0 +1,2 @@
+# Ground-based green facade
+A ground-based green facade is a wall completely or partially covered with greenery. The climber plants are planted in the ground (soil, technical, or recycling substrates) or in containers (filled with soil) and grow directly on the wall, or climb using climbing-aids (e.g., on a frame) that is connected to the wall. These NBS can also be implemented along highly frequented roads to reduce noise emissions. Adapted
