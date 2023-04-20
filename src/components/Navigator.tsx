@@ -20,6 +20,7 @@ export default function Navigator(
     const [cy, setCy] = useState<cytoscape.Core | null>(null);
     const [textId, setTextId] = useState("default");
     const { width, height, ref } = useResizeDetector();
+    const parentPadding = 70;
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
         levelWidth(node: any): number;
@@ -63,14 +64,15 @@ export default function Navigator(
 
     const makeSVGDonut = (node: cytoscape.NodeSingular) => {
         const parser = new DOMParser();
-        const center_x = node.width() / 2;
-        const center_y = node.height() / 2;
         const children = node.children()
+        const center_x = node.width() / 2 + children.reduce((prev, node) => prev + node.position().x, 0) / children.length - node.position().x;
+        const center_y = node.height() / 2 + children.reduce((prev, node) => prev + node.position().y, 0) / children.length - node.position().y;
+        const margin = 10;
         const child_radius = children[0].width() / 2
-        let radius = (node.width() + node.height()) / 4 - child_radius;
-        let stroke_width = child_radius * 2.0;
+        let radius = center_y - child_radius - parentPadding + margin;
+        let stroke_width = (child_radius + margin) * 2.0;
 
-        if (node.data().id == "Unit-Parent") {
+        if (node.id() === "Unit-Parent") {
             const child_diff = children[1].position().y - children[0].position().y
             radius = radius - child_diff / 2;
             stroke_width = stroke_width * 2 + (child_diff - child_radius) / 2;
@@ -130,7 +132,12 @@ export default function Navigator(
                 "border-opacity": 0,
                 "background-opacity": 0,
                 "background-image-opacity": 0.3,
-                'background-fit': 'cover',
+                "padding-top": `${parentPadding}px`,
+                "padding-bottom": `${parentPadding}px`,
+                "padding-left": `${parentPadding}px`,
+                "padding-right": `${parentPadding}px`,
+                "background-fit": "cover"
+
             }
         },
         {
