@@ -1,2 +1,2 @@
-# Ammonia stripping (for N recovery)
+# Ammonia Stripping (for N Recovery)
 Gas stripping (such as dissolved ammonia) involves the mass transfer of a gas from the liquid phase to the gas phase. The transfer is accomplished by contacting the liquid containing the gas (ammonia) that is to be stripped with a gas (usually air) that does not contain the gas initially. For ammonia stripping, the ammonia stripped from the wastewater is converted to ammonium by passing the off-gas through an acid bath/scrubber. Adapted

@@ -1,2 +1,2 @@
-# Vegetated grid pavment
+# Vegetated Grid Pavement
 A vegetated grid pavement includes planted pavement structures normally filled with soil, grass seeds, gravel, or rocks. It can be considered as a type of pervious/permeable pavement. The runoff soaks through the pavement structure and can be stored or infiltrated into the ground. Accordingly, using permeable pavement is appropriate for decreasing the urban flooding problem and urban heat island effect. The structures are modular and adaptable to different surface types such as parking areas, roadways, cycle–pedestrian paths, sidewalks, or street furniture zones. Usually, the costs and maintenance are low compared to traditional pavements. Adapted

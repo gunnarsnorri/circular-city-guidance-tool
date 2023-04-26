@@ -1,2 +1,2 @@
-# Tree pits
+# Tree Pits
 Trees pits and planters can be designed to collect and attenuate runoff by providing additional storage within the underlying structure. The soils around trees can also be used to directly filter out pollutant from runoff. (SUDS Manual). A tree box filter or in-ground well consists of a container filled with amended soil and planted with a tree, which is underlain by crushed gravel media. Tree pits are attractive for stormwater control in dense urban areas because of their small size, low cost, and associated co-benefits that they bring by greening the streets. Adapted

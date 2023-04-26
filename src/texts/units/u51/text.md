@@ -1,2 +1,2 @@
-# Urban forest
+# Urban Forest
 An urban forest mimics the appearance/form of a forest in an urban setting. It comprises all woodlands, groups of trees, and individual trees, forests, street trees, trees in parks and gardens, and trees in derelict corners. Usually, urban forests are managed and enable foraging for food. Benefits of urban forests range from psychological, aesthetic, recreational, and health benefits to amelioration of urban climate, mitigation of air pollution, and increased urban biodiversity. Adapted

@@ -1,2 +1,2 @@
-# Detention vaults and tanks
+# Detention Vaults and Tanks
 Detention vaults and tanks are underground storage/treatment facilities constructed of reinforced concrete (vaults) or corrugated pipe (tanks). They may be used to handle general site runoff, or they may be dedicated to the runoff from impervious surfaces such as roofs and parking lots. Detention vaults may be designed to empty completely between storms (dry vaults), or they may be designed to maintain a permanent water pool (wet vaults). These facilities provide runoff volume control, peak discharge reduction, sediment control, and harvesting potential. Adapted

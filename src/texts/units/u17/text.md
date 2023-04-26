@@ -1,2 +1,2 @@
-# Extensive green roof
+# Extensive Green Roof
 An extensive green roof implies basic, light-weight, planted systems that are implemented on the rooftop of a building. The most common plants used are sedum, herbs, mosses, and grasses. The installation and maintenance are less expensive than that of intensive systems. The substrate is relatively thinner (10–15 cm, or reduced form >10 cm) than for intensive systems (more than 20 cm)

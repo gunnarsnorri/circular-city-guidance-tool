@@ -1,7 +1,7 @@
 [
   {
     "id": "U3",
-    "name": "Filter strips",
+    "name": "Filter Strips",
     "parents": [
       "S1.1.1",
       "S1.1.2"
@@ -9,7 +9,7 @@
   },
   {
     "id": "U4",
-    "name": "Filter drain",
+    "name": "Filter Drain",
     "parents": [
       "S1.1.1",
       "S1.1.2"
@@ -26,14 +26,14 @@
   },
   {
     "id": "U9",
-    "name": "Dry swale",
+    "name": "Dry Swale",
     "parents": [
       "S1.1.1"
     ]
   },
   {
     "id": "U7",
-    "name": "Bioretention cell (Rain garden)",
+    "name": "Bioretention Cell (Rain Garden)",
     "parents": [
       "S1.1.2",
       "S1.2.2"
@@ -41,7 +41,7 @@
   },
   {
     "id": "U21",
-    "name": "Treatment wetland",
+    "name": "Treatment Wetland",
     "parents": [
       "S1.1.2",
       "S2.1.2",
@@ -52,7 +52,7 @@
   },
   {
     "id": "U5",
-    "name": "(Wet) Retention pond",
+    "name": "(Wet) Retention Pond",
     "parents": [
       "S1.1.3",
       "S1.2.1",
@@ -69,7 +69,7 @@
   },
   {
     "id": "US2",
-    "name": "Detention vaults and tanks",
+    "name": "Detention Vaults and Tanks",
     "parents": [
       "S1.1.3",
       "S2.1.3",
@@ -79,7 +79,7 @@
   },
   {
     "id": "U17",
-    "name": "Extensive green roof",
+    "name": "Extensive Green Roof",
     "parents": [
       "S1.2.1",
       "S6.2.1"
@@ -87,7 +87,7 @@
   },
   {
     "id": "U18",
-    "name": "Intensive green roof",
+    "name": "Intensive Green Roof",
     "parents": [
       "S1.2.1",
       "S1.2.3",
@@ -98,14 +98,14 @@
   },
   {
     "id": "U6",
-    "name": "(Dry) Detention pond",
+    "name": "(Dry) Detention Pond",
     "parents": [
       "S1.2.1"
     ]
   },
   {
     "id": "U28",
-    "name": "River restoration",
+    "name": "River Restoration",
     "parents": [
       "S1.2.1"
     ]
@@ -119,7 +119,7 @@
   },
   {
     "id": "U1",
-    "name": "Infiltration basin",
+    "name": "Infiltration Basin",
     "parents": [
       "S1.2.2",
       "S2.1.3"
@@ -127,7 +127,7 @@
   },
   {
     "id": "U2",
-    "name": "Infiltration trench",
+    "name": "Infiltration Trench",
     "parents": [
       "S1.2.2",
       "S2.1.3"
@@ -135,7 +135,7 @@
   },
   {
     "id": "U10",
-    "name": "Tree pits",
+    "name": "Tree Pits",
     "parents": [
       "S1.2.2",
       "S1.2.3"
@@ -143,14 +143,14 @@
   },
   {
     "id": "U11",
-    "name": "Vegetated grid pavement",
+    "name": "Vegetated Grid Pavement",
     "parents": [
       "S1.2.2"
     ]
   },
   {
     "id": "U13",
-    "name": "Ground-based green facade",
+    "name": "Ground-Based Green Facade",
     "parents": [
       "S1.2.3",
       "S6.1.1",
@@ -159,7 +159,7 @@
   },
   {
     "id": "U14",
-    "name": "Wall-based green facade",
+    "name": "Wall-Based Green Facade",
     "parents": [
       "S1.2.3",
       "S6.1.1",
@@ -168,7 +168,7 @@
   },
   {
     "id": "U15",
-    "name": "Pot-based green facade",
+    "name": "Pot-Based Green Facade",
     "parents": [
       "S1.2.3",
       "S2.1.2",
@@ -178,21 +178,21 @@
   },
   {
     "id": "U19",
-    "name": "Semi-intensive green roof",
+    "name": "Semi-Intensive Green Roof",
     "parents": [
       "S1.2.3"
     ]
   },
   {
     "id": "U16",
-    "name": "Vegetated pergola",
+    "name": "Vegetated Pergola",
     "parents": [
       "S1.2.3"
     ]
   },
   {
     "id": "US7",
-    "name": "Physical unit operations for solid/liquid separation",
+    "name": "Physical Unit Operations for Solid / Liquid Separation",
     "parents": [
       "S2.1.1",
       "S3.1.1",
@@ -202,7 +202,7 @@
   },
   {
     "id": "U26",
-    "name": "Anaerobic treatment (for nutrient, VFA & methane recovery)",
+    "name": "Anaerobic Treatment (for Nutrient, VFA & Methane Recovery)",
     "parents": [
       "S2.1.2",
       "S3.1.1",
@@ -213,7 +213,7 @@
   },
   {
     "id": "U22",
-    "name": "Waste stabilisation pond",
+    "name": "Waste Stabilisation Pond",
     "parents": [
       "S2.1.2"
     ]
@@ -228,7 +228,7 @@
   },
   {
     "id": "US3",
-    "name": "Phosphate precipitation (for P recovery)",
+    "name": "Phosphate Precipitation (for P Recovery)",
     "parents": [
       "S3.1.2",
       "S3.2.2"
@@ -236,7 +236,7 @@
   },
   {
     "id": "US4",
-    "name": "Ammonia stripping (for N recovery)",
+    "name": "Ammonia Stripping (for N Recovery)",
     "parents": [
       "S3.1.2",
       "S3.2.2"
@@ -266,7 +266,7 @@
   },
   {
     "id": "U49",
-    "name": "Productive garden",
+    "name": "Productive Garden",
     "parents": [
       "S3.2.2",
       "S5.1.1"
@@ -274,7 +274,7 @@
   },
   {
     "id": "U50",
-    "name": "Urban farms and orchards",
+    "name": "Urban Farms and Orchards",
     "parents": [
       "S3.2.2",
       "S5.1.2",
@@ -284,14 +284,14 @@
   },
   {
     "id": "U51",
-    "name": "Urban forest",
+    "name": "Urban Forest",
     "parents": [
       "S3.2.2"
     ]
   },
   {
     "id": "U33",
-    "name": "Soil improvement and conservation",
+    "name": "Soil Improvement and Conservation",
     "parents": [
       "S3.2.2"
     ]
@@ -305,7 +305,7 @@
   },
   {
     "id": "U45",
-    "name": "Hydroponic and soilless technologies",
+    "name": "Hydroponic and Soilless Technologies",
     "parents": [
       "S5.1.1"
     ]
@@ -319,14 +319,14 @@
   },
   {
     "id": "U47",
-    "name": "Aquaponic farming",
+    "name": "Aquaponic Farming",
     "parents": [
       "S5.1.1"
     ]
   },
   {
     "id": "U37",
-    "name": "Green corridors",
+    "name": "Green Corridors",
     "parents": [
       "S5.1.2",
       "S5.3.1",
@@ -336,7 +336,7 @@
   },
   {
     "id": "U40",
-    "name": "Large urban park",
+    "name": "Large Urban Park",
     "parents": [
       "S5.1.2",
       "S5.3.1",
@@ -346,7 +346,7 @@
   },
   {
     "id": "U42",
-    "name": "Urban meadows",
+    "name": "Urban Meadows",
     "parents": [
       "S5.1.2",
       "S5.3.1"
@@ -354,7 +354,7 @@
   },
   {
     "id": "U39",
-    "name": "Street trees",
+    "name": "Street Trees",
     "parents": [
       "S5.3.1"
     ]

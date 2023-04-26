@@ -1,3 +1,3 @@
-# Anaerobic treatment (for nutrient, VFA & methene recovery)
+# Anaerobic Treatment (for Nutrient, VFA & Methane Recovery)
 Anaerobic treatment refers to a treatment technology that stabilizes organic wastes or organic pollutants in wastewater, without the need for aeration. During anaerobic treatment, biodegradable organic compounds are mineralized, leaving inorganic compounds such as NH4+, PO43-, HS- in the solution. Anaerobic treatment can be conducted in technically plain systems, and the process can be applied at any scale and at almost any place. During
 treatment, useful energy in the form of biogas (CH4 and CO2) or chemical building blocks such as volatile fatty acids (VFA) are produced.

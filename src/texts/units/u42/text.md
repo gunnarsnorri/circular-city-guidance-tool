@@ -1,2 +1,2 @@
-# Urban meadows
+# Urban Meadows
 Urban meadows are species-rich grasslands created over a longer period of time, which are beneficial to native wildlife in the urban environment. The type of meadow created and method used to create and manage them will vary with conditions, habitat, and budget. The benefits of implementing urban meadows (instead of mown grass in urban public green spaces) are evident for urban biodiversity, human wellbeing, and for local economy as a cost-effective solution. Adapted

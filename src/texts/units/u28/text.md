@@ -1,2 +1,2 @@
-# River restoration
+# River Restoration
 River restoration includes a set of techniques that aim to reduce pluvial flood risk and erosion. The river channel is widened or deepened, recovering part of its former channel, and enhancing the flood dissipation capacity. In case of covered/buried watercourses, the channel can be opened by removing concrete layers. Both ways lead to an increment of storage capacity of the channel and natural development of the riverbed and riparian zone. Adapted

@@ -20,7 +20,6 @@ export default function Navigator(
     const [cy, setCy] = useState<cytoscape.Core | null>(null);
     const [textId, setTextId] = useState("default");
     const { width, height, ref } = useResizeDetector();
-    const parentPadding = 70;
     interface Myopts extends cytoscape.ConcentricLayoutOptions {
         concentric(node: any): number;
         levelWidth(node: any): number;
@@ -33,7 +32,7 @@ export default function Navigator(
         sweep: undefined, // how many radians should be between the first and last node (defaults to full circle)
         clockwise: true, // whether the layout should go clockwise (true) or counterclockwise/anticlockwise (false)
         equidistant: false, // whether levels have an equal radial distance betwen them, may cause bounding box overflow
-        minNodeSpacing: 30, // min spacing between outside of nodes (used for radius adjustment)
+        minNodeSpacing: 50, // min spacing between outside of nodes (used for radius adjustment)
         boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
         avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
         nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
@@ -62,23 +61,37 @@ export default function Navigator(
         transform: function (node, position) { return position; }, // transform a given node position. Useful for changing flow direction in discrete layouts
     }
 
-    const makeSVGDonut = (node: cytoscape.NodeSingular) => {
-        const parser = new DOMParser();
-        const children = node.children()
-        const center_x = node.width() / 2 + children.reduce((prev, node) => prev + node.position().x, 0) / children.length - node.position().x;
-        const center_y = node.height() / 2 + children.reduce((prev, node) => prev + node.position().y, 0) / children.length - node.position().y;
-        const margin = 10;
-        const child_radius = children[0].width() / 2
-        let radius = center_y - child_radius - parentPadding + margin;
-        let stroke_width = (child_radius + margin) * 2.0;
-
-        if (node.id() === "Unit-Parent") {
-            const child_diff = children[1].position().y - children[0].position().y
-            radius = radius - child_diff / 2;
-            stroke_width = stroke_width * 2 + (child_diff - child_radius) / 2;
+    const makeInnerSVGDonut = (nodeName: string, centerX: number, centerY: number, margin: number) => {
+        let svgStr = "";
+        if (cy !== null) {
+            const node = cy?.$(`#${nodeName}`);
+            const children = node.children()
+            const childRadius = children[0].width() / 2
+            const relativeCenterY = children.reduce((prev, child) => prev + child.relativePosition().y, 0) / children.length;
+            let radius = + relativeCenterY - children[0].relativePosition().y;
+            let strokeWidth = (childRadius + margin) * 2;
+            svgStr = `<circle class="donut-segment" cx="${centerX}" cy="${centerY}" r="${radius}" fill="transparent" stroke="${node.data().color}" stroke-width="${strokeWidth}"></circle>`;
         }
-        const svgStr = `<circle class="donut-segment" cx="${center_x}" cy="${center_y}" r="${radius}" fill="transparent" stroke="${node.data().color}" stroke-width="${stroke_width}"></circle>`;
-        let svgText = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg><svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='${node.width()}' height='${node.height()}'>${svgStr}</svg>`;
+        return svgStr;
+    }
+
+    const makeSVGDonuts = (unitParent: cytoscape.NodeSingular) => {
+        const parser = new DOMParser();
+        const children = unitParent.children()
+        const centerX = unitParent.width() / 2 + children.reduce((prev, child) => prev + child.relativePosition().x, 0) / children.length;
+        const centerY = unitParent.height() / 2 + children.reduce((prev, child) => prev + child.relativePosition().y, 0) / children.length;
+        const margin = 0;
+        const child_radius = children[0].width() / 2
+        const child_diff = children[1].position().y - children[0].position().y
+        const radius = centerY - child_radius - child_diff / 2;
+        const stroke_width = (child_radius + margin) * 2 + child_diff;
+
+        let svgStr = `<circle class="donut-segment" cx="${centerX}" cy="${centerY}" r="${radius}" fill="transparent" stroke="${unitParent.data().color}" stroke-width="${stroke_width}"></circle>`;
+        const other_parents = ["UCC-Parent", "Demand-Parent", "Service-Parent"]
+        other_parents.forEach((parent) => {
+            svgStr += makeInnerSVGDonut(parent, centerX, centerY, margin)
+        })
+        const svgText = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg><svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='${unitParent.width()}' height='${unitParent.height()}'>${svgStr}</svg>`;
         return parser.parseFromString(svgText, 'text/xml').documentElement;
     }
 
@@ -125,20 +138,20 @@ export default function Navigator(
         {
             selector: ".parent",
             style: {
-                "background-image": function (node: cytoscape.NodeSingular) {
-                    const s = makeSVGDonut(node)
-                    return 'data:image/svg+xml;utf8,' + encodeURIComponent(s.outerHTML);;
-                },
                 "border-opacity": 0,
                 "background-opacity": 0,
-                "background-image-opacity": 0.3,
-                "padding-top": `${parentPadding}px`,
-                "padding-bottom": `${parentPadding}px`,
-                "padding-left": `${parentPadding}px`,
-                "padding-right": `${parentPadding}px`,
-                "background-fit": "cover"
-
             }
+        },
+        {
+            selector: "#Unit-Parent",
+            style: {
+                "background-image": function (node: cytoscape.NodeSingular) {
+                    const s = makeSVGDonuts(node)
+                    return 'data:image/svg+xml;utf8,' + encodeURIComponent(s.outerHTML);;
+                },
+                "background-image-opacity": 0.3,
+            }
+
         },
         {
             selector: ".hidden",
@@ -184,7 +197,6 @@ export default function Navigator(
     }
 
     const expandUnit = (node: cytoscape.NodeSingular) => {
-        const nodeData = node.data();
         node.connectedEdges().forEach((edge) => {
             const source = edge.source();
             const target = edge.target();

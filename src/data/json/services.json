@@ -1,7 +1,7 @@
 [
   {
     "id": "S1.1.1",
-    "name": "Collection/Conveyance",
+    "name": "Collection / Conveyance",
     "parents": [
       "D1.1"
     ]
@@ -44,7 +44,7 @@
   },
   {
     "id": "S2.1.1",
-    "name": "Collection/Separation",
+    "name": "Collection / Separation",
     "parents": [
       "D2.1"
     ]
@@ -107,49 +107,49 @@
   },
   {
     "id": "S5.1.1",
-    "name": "Production of edible BM",
+    "name": "Production of Edible BM",
     "parents": [
       "D5.1"
     ]
   },
   {
     "id": "S5.1.2",
-    "name": "Production of non-edible BM",
+    "name": "Production of Inedible BM",
     "parents": [
       "D5.1"
     ]
   },
   {
     "id": "S5.3.1",
-    "name": "Biomass recovery",
+    "name": "Biomass Recovery",
     "parents": [
       "D5.3"
     ]
   },
   {
     "id": "S6.1.1",
-    "name": "Microclimate regulation",
+    "name": "Microclimate Regulation",
     "parents": [
       "D6.1"
     ]
   },
   {
     "id": "S6.2.1",
-    "name": "Increase building insulation",
+    "name": "Increase Building Insulation",
     "parents": [
       "D6.2"
     ]
   },
   {
     "id": "S6.2.2",
-    "name": "Energy recovery from biomass",
+    "name": "Energy Recovery From Biomass",
     "parents": [
       "D6.2"
     ]
   },
   {
     "id": "S6.2.3",
-    "name": "Energy recovery from Wastewater",
+    "name": "Energy Recovery From Wastewater",
     "parents": [
       "D6.2"
     ]

@@ -1,2 +1,2 @@
-# Semi-intensive green roof
+# Semi-Intensive Green Roof
 A semi-intensive green roof is a combination of areas as intensive and extensive green roof. It is implemented on rooftops and is characterized by small herbaceous plants, ground covers, grasses, perennials and small shrubs, as well as higher growing plants, requiring moderate maintenance. The recommended minimum substrate thickness is between 12 cm (grass or herbaceous plants) and 20 cm (smaller shrubs and coppices), but it can be adjusted. This type of green roof has higher maintenance than extensive systems and has the potential to host a richer ecology. Adapted
