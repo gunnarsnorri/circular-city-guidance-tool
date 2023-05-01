@@ -6,3 +6,13 @@
   display: flex;
   align-items: center;
 }
+
+.alt-water-table {
+    white-space: nowrap;
+    width: 1% !important;
+}
+.alt-water-table td.fit, 
+.alt-water-table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}

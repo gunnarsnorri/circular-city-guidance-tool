@@ -1,4 +1,4 @@
-import RainWaterCalculator from "./calculators/RainWaterCalculator";
+import AlternativeWaterSourceCalculator from "./calculators/AlternativeWaterSourceCalculator";
 import Stack from "react-bootstrap/Stack";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -47,32 +47,25 @@ export default function Calculators(theme: string) {
                 </Form>
                 <Accordion>
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Rain Water</Accordion.Header>
+                        <Accordion.Header>Alternative Water Source</Accordion.Header>
                         <Accordion.Body>
 
-                            <RainWaterCalculator region={region} />
+                            <AlternativeWaterSourceCalculator region={region} />
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
-                        <Accordion.Header>Waste Water</Accordion.Header>
-                        <Accordion.Body>
-
-                            <WasteWaterCalculator region={region} />
-                        </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
                         <Accordion.Header>Alternative Nutrients Collection</Accordion.Header>
                         <Accordion.Body>
                             <AlternativeNutrientsCollectionCalculator region={region} />
                         </Accordion.Body>
                     </Accordion.Item>
-                    <Accordion.Item eventKey="3">
+                    <Accordion.Item eventKey="2">
                         <Accordion.Header>Alternative Nutrients Revalorisation</Accordion.Header>
                         <Accordion.Body>
                             <AlternativeNutrientsRevalorisationCalculator region={region} />
                         </Accordion.Body>
                     </Accordion.Item>
-                    <Accordion.Item eventKey="4">
+                    <Accordion.Item eventKey="3">
                         <Accordion.Header>Biomass Recovery</Accordion.Header>
                         <Accordion.Body>
                             <BiomassRecoveryCalculatorSelection theme={theme} />

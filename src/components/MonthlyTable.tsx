@@ -4,7 +4,7 @@ import { MonthlyTableProps } from "../interfaces/ComponentProps";
 export default function MonthlyTable(props: MonthlyTableProps) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     return (
-        <Table striped bordered hover>
+        <Table className={props.className} striped bordered hover>
             <thead>
                 <tr>
                     <th>Month</th>
