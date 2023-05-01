@@ -59,11 +59,7 @@ const AWSBarChart = ({ surfaceRunoff, monthlyGreyWater, monthlyWasteWater }: { s
         plugins: {
             legend: {
                 position: 'top' as const,
-            },
-            title: {
-                display: true,
-                text: 'Bar Chart',
-            },
+            }
         },
         interaction: {
             intersect: false,
@@ -84,20 +80,20 @@ const AWSBarChart = ({ surfaceRunoff, monthlyGreyWater, monthlyWasteWater }: { s
             {
                 label: "Surface Runoff",
                 data: surfaceRunoff,
-                backgroundColor: "red",
+                backgroundColor: "#A2D729",
                 stack: "Stack 0"
             },
             {
                 label: "Greywater",
                 data: monthlyGreyWater,
-                backgroundColor: "blue",
+                backgroundColor: "#6699CC",
                 stack: "Stack 1"
 
             },
             {
                 label: "Waste Water",
                 data: monthlyWasteWater,
-                backgroundColor: "green",
+                backgroundColor: "#60637C",
                 stack: "Stack 1"
 
             },
