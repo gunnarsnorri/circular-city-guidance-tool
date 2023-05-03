@@ -1,18 +1,11 @@
 import Stack from "react-bootstrap/Stack";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import MonthlyTable from "../MonthlyTable";
 import { allRegionData } from "../../calculator/Region";
 import { GlobalCalcStorage } from "../../interfaces/CalculatorInterface";
+import PersonForm from "../PersonForm";
 
 export default function AlternativeNutrientsCollectionCalculator({ globalStorage, setGlobalStorage }: { globalStorage: Partial<GlobalCalcStorage>, setGlobalStorage: Function }) {
-    const onClick = (event: React.FormEvent<HTMLElement>) => {
-        const target = event.target as HTMLInputElement;
-        target.select();
-    };
-    const onChange = (event: React.FormEvent<HTMLElement>) => {
-        const target = event.target as HTMLInputElement;
-        setGlobalStorage({ persons: target.valueAsNumber });
-    };
     const monthlyBlackWater = Array<number>(12);
     const monthlyYellowWater = Array<number>(12);
     const monthlyBrownWater = Array<number>(12);
@@ -32,11 +25,7 @@ export default function AlternativeNutrientsCollectionCalculator({ globalStorage
         <Stack direction="horizontal" gap={3}>
             <Form>
                 <Form.Group>
-                    <InputGroup onClick={onClick}>
-                        <InputGroup.Text>Number of people</InputGroup.Text>
-                        <Form.Control onChange={onChange} type="number" value={globalStorage.persons ?? 0} />
-                        <InputGroup.Text>persons</InputGroup.Text>
-                    </InputGroup>
+                    <PersonForm globalStorage={globalStorage} setGlobalStorage={setGlobalStorage} />
                 </Form.Group>
             </Form>
             <MonthlyTable columns={

@@ -17,6 +17,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import PersonForm from "../PersonForm";
 
 
 ChartJS.register(
@@ -41,7 +42,8 @@ const AreaInputGroup = (props: NumberInputGroupProps) => {
     };
     const onChange = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        props.nbsSystem.setArea(target.valueAsNumber);
+        const val = (Number.isNaN(target.valueAsNumber)) ? 0 : target.valueAsNumber;
+        props.nbsSystem.setArea(val);
         props.setToggleState(!props.toggleState);
     };
 
@@ -107,14 +109,6 @@ export default function AlternativeWaterSourceCalculator({ globalStorage, setGlo
     const [surfaceRunoff, setSurfaceRunoff] = useState<Array<number>>(Array<number>(12));
     const [toggleState, setToggleState] = useState<boolean>(false);
 
-    const onClickPersons = (event: React.FormEvent<HTMLElement>) => {
-        const target = event.target as HTMLInputElement;
-        target.select();
-    };
-    const onChangePersons = (event: React.FormEvent<HTMLElement>) => {
-        const target = event.target as HTMLInputElement;
-        setGlobalStorage({ persons: target.valueAsNumber });
-    };
     const monthlyWasteWater = Array<number>(12);
     const monthlyGreyWater = Array<number>(12);
     if (globalStorage.region !== undefined && allRegionData[globalStorage.region] !== undefined) {
@@ -146,11 +140,7 @@ export default function AlternativeWaterSourceCalculator({ globalStorage, setGlo
             <Stack direction="horizontal" gap={3}>
                 <Form>
                     <Form.Group>
-                        <InputGroup onClick={onClickPersons}>
-                            <InputGroup.Text>Number of people</InputGroup.Text>
-                            <Form.Control onChange={onChangePersons} type="number" value={globalStorage.persons ?? 0} />
-                            <InputGroup.Text>persons</InputGroup.Text>
-                        </InputGroup>
+                        <PersonForm globalStorage={globalStorage} setGlobalStorage={setGlobalStorage} />
                         {allNBSSystems.map((nbsSystem) => {
                             return (
                                 <AreaInputGroup nbsSystem={nbsSystem} key={nbsSystem.name as string} toggleState={toggleState} setToggleState={setToggleState} />
