@@ -1,6 +1,6 @@
 import { NodeType, NodeWithLinkIds, NodeWithLinks, colorMapping, Pannable } from "../interfaces/DataInterface";
 import { getCreateNode, nodeDataToNodeWithLinks } from "./data";
-import services from "./json/services.json";
+import services from "./json/nodes/services.json";
 
 const servicesAndLinks: Array<NodeWithLinkIds> = services.map(nodeDataToNodeWithLinks);
 

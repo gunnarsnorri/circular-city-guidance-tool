@@ -2,7 +2,6 @@ import cytoscape, { Core } from 'cytoscape';
 import { CSSProperties } from 'react';
 import { Button } from 'react-bootstrap';
 import { TfiZoomIn, TfiZoomOut, TfiHome, TfiFullscreen } from 'react-icons/tfi'
-import data from '../data/data';
 
 const NavigatorMenu = ({ cy, style, theme, setTextId, elements }: { cy: Core | null, style: CSSProperties, theme: string, setTextId: Function, elements: Array<cytoscape.ElementDefinition> }) => {
     const adjustZoom = (zoom: number) => cy?.zoom(cy?.zoom() / (1 - zoom))

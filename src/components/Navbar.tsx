@@ -1,6 +1,5 @@
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
-import { NavDropdown } from "react-bootstrap"
 import DarkModeDropdown from "./DarkModeDropdown"
 
 export default function MainNavbar({ setActiveContainerId, mode, setPreferredTheme }: { setActiveContainerId: Function, mode: string, setPreferredTheme: Function }) {

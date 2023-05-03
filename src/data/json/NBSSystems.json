@@ -1,0 +1,5 @@
+[
+  { "name": "Green Roof", "runofCoefficient": 0.3 },
+  { "name": "Impervious Area", "runofCoefficient": 0.8 },
+  { "name": "Pervious Area", "runofCoefficient": 0.15 }
+]

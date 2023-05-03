@@ -1,7 +1,7 @@
 import cytoscape from "cytoscape";
 import { NodeType, NodeWithLinks, NodeWithLinkIds, colorMapping, Pannable } from "../interfaces/DataInterface";
 import { getCreateNode, nodeDataToNodeWithLinks } from "./data";
-import uccs from "./json/uccs.json";
+import uccs from "./json/nodes/uccs.json";
 
 const uccNames: Array<NodeWithLinkIds> = uccs.map(nodeDataToNodeWithLinks);
 

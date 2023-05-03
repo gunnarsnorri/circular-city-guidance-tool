@@ -5,6 +5,7 @@ import "../../styles/calculator.css";
 import { allNBSSystems, NBSSystem } from "../../calculator/NBSSystem";
 import { allRegionData } from "../../calculator/Region";
 import MonthlyTable from "../MonthlyTable";
+import { GlobalCalcStorage } from "../../interfaces/CalculatorInterface";
 
 import {
     Chart as ChartJS,
@@ -102,34 +103,33 @@ const AWSBarChart = ({ surfaceRunoff, monthlyGreyWater, monthlyWasteWater }: { s
     return <Bar options={options} data={chartData} />;
 }
 
-
-export default function AlternativeWaterSourceCalculator({ region }: { region: string | undefined }) {
+export default function AlternativeWaterSourceCalculator({ globalStorage, setGlobalStorage }: { globalStorage: Partial<GlobalCalcStorage>, setGlobalStorage: Function }) {
     const [surfaceRunoff, setSurfaceRunoff] = useState<Array<number>>(Array<number>(12));
     const [toggleState, setToggleState] = useState<boolean>(false);
-    const [personCount, setPersonCount] = useState<number>(0);
+
     const onClickPersons = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
         target.select();
     };
     const onChangePersons = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        setPersonCount(target.valueAsNumber);
+        setGlobalStorage({ persons: target.valueAsNumber });
     };
     const monthlyWasteWater = Array<number>(12);
     const monthlyGreyWater = Array<number>(12);
-    if (region !== undefined && allRegionData[region] !== undefined) {
-        const regionData = allRegionData[region];
+    if (globalStorage.region !== undefined && allRegionData[globalStorage.region] !== undefined) {
+        const regionData = allRegionData[globalStorage.region];
         if (regionData.wasteWater !== undefined) {
-            monthlyWasteWater.fill(30 * personCount * regionData.wasteWater);
+            monthlyWasteWater.fill(30 * (globalStorage.persons ?? 0) * regionData.wasteWater);
         }
         if (regionData.greyWater !== undefined) {
-            monthlyGreyWater.fill(30 * personCount * regionData.greyWater);
+            monthlyGreyWater.fill(30 * (globalStorage.persons ?? 0) * regionData.greyWater);
         }
     }
 
     useEffect(() => {
-        if (region !== undefined && allRegionData[region] !== undefined) {
-            const regionData = allRegionData[region];
+        if (globalStorage.region !== undefined && allRegionData[globalStorage.region] !== undefined) {
+            const regionData = allRegionData[globalStorage.region];
             if (regionData.monthlyRainfall !== undefined) {
                 const runoff = regionData.monthlyRainfall.map((rainfall) => {
                     return allNBSSystems.map(nbsSystem => nbsSystem.surfaceRunoff(rainfall)).reduce((a, b) => a + b)
@@ -137,7 +137,7 @@ export default function AlternativeWaterSourceCalculator({ region }: { region: s
                 setSurfaceRunoff(runoff);
             }
         }
-    }, [region, toggleState])
+    }, [globalStorage.region, toggleState])
 
 
 
@@ -148,7 +148,7 @@ export default function AlternativeWaterSourceCalculator({ region }: { region: s
                     <Form.Group>
                         <InputGroup onClick={onClickPersons}>
                             <InputGroup.Text>Number of people</InputGroup.Text>
-                            <Form.Control onChange={onChangePersons} type="number" defaultValue={0} />
+                            <Form.Control onChange={onChangePersons} type="number" value={globalStorage.persons ?? 0} />
                             <InputGroup.Text>persons</InputGroup.Text>
                         </InputGroup>
                         {allNBSSystems.map((nbsSystem) => {

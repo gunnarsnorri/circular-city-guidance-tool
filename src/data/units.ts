@@ -1,6 +1,6 @@
 import { NodeType, NodeWithLinkIds, NodeWithLinks, Pannable, colorMapping } from "../interfaces/DataInterface";
 import { getCreateNode, nodeDataToNodeWithLinks } from "./data";
-import units from "./json/units.json";
+import units from "./json/nodes/units.json";
 
 
 const unitsAndLinks: Array<NodeWithLinkIds> = units.map(nodeDataToNodeWithLinks);
