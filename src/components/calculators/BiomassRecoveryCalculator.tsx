@@ -27,8 +27,8 @@ enum WeatherCondition {
 
 type GrassClippingsCalcStorage = {
     area: number,
-    managementPractice: ManagementPractice,
-    weatherCondition: WeatherCondition
+    managementPractice: keyof typeof ManagementPractice,
+    weatherCondition: keyof typeof WeatherCondition
 }
 
 const gcRec: Record<string, Record<string, number>> = {}
@@ -50,20 +50,27 @@ function GrassClippingsCalculator() {
         localStorage.setItem('grassClippingsCalcStorage', JSON.stringify({ ...prev, ...cur }));
         return { ...prev, ...cur };
     }, (JSON.parse(localStorage.getItem('grassClippingsCalcStorage') ?? "{}") as Partial<GrassClippingsCalcStorage>) ?? { area: 0 });;
-    let rec: Record<string, number> | undefined = undefined;
+    const area = stateStorage.area;
+    let managementPractice: ManagementPractice | undefined = undefined
     if (stateStorage.managementPractice !== undefined)
-        rec = gcRec[stateStorage.managementPractice];
+        managementPractice = ManagementPractice[stateStorage.managementPractice];
+    let weatherCondition: WeatherCondition | undefined = undefined
+    if (stateStorage.weatherCondition !== undefined)
+        weatherCondition = WeatherCondition[stateStorage.weatherCondition];
+    let rec: Record<string, number> | undefined = undefined;
+    if (managementPractice !== undefined)
+        rec = gcRec[managementPractice];
     let gc = 0;
-    if (rec !== undefined && stateStorage.weatherCondition !== undefined)
-        gc = rec[stateStorage.weatherCondition] ?? 0;
-    const recoveredGrassClippings = stateStorage.area ?? 0 * gc;
+    if (rec !== undefined && weatherCondition !== undefined)
+        gc = rec[weatherCondition] ?? 0;
+    const recoveredGrassClippings = Math.round((area ?? 0) * gc);
     const onChangeManagementProcess = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        setStateStorage({ managementPractice: ManagementPractice[target.value as keyof typeof ManagementPractice] })
+        setStateStorage({ managementPractice: target.value as keyof typeof ManagementPractice })
     }
     const onChangeWeatherCondition = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        setStateStorage({ weatherCondition: WeatherCondition[target.value as keyof typeof WeatherCondition] })
+        setStateStorage({ weatherCondition: target.value as keyof typeof WeatherCondition })
     }
     const onClickInput = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
@@ -76,26 +83,26 @@ function GrassClippingsCalculator() {
     return <Stack direction="horizontal" gap={3}>
         <Form>
             <Form.Group>
-                <Form.Select onChange={onChangeManagementProcess}>
+                <Form.Select value={stateStorage.managementPractice} onChange={onChangeManagementProcess}>
                     <option value={undefined} key={-1}>Management Practice</option>
                     {
                         (Object.keys(ManagementPractice) as Array<keyof typeof ManagementPractice>).map((key, index) => {
-                            return <option value={key} key={index}>{key}</option>
+                            return <option value={key} key={index}>{ManagementPractice[key]}</option>
                         })
                     }
                 </Form.Select>
-                <Form.Select onChange={onChangeWeatherCondition}>
+                <Form.Select value={stateStorage.weatherCondition} onChange={onChangeWeatherCondition}>
                     <option value={undefined} key={-1}>Weather Conditions</option>
                     {
-                        (Object.keys(WeatherCondition) as Array<keyof typeof ManagementPractice>).map((key, index) => {
-                            return <option value={key} key={index}>{key}</option>
+                        (Object.keys(WeatherCondition) as Array<keyof typeof WeatherCondition>).map((key, index) => {
+                            return <option value={key} key={index}>{WeatherCondition[key]}</option>
                         })
                     }
                 </Form.Select>
                 <InputGroup onClick={onClickInput}>
                     <InputGroup.Text>Area</InputGroup.Text>
-                    <Form.Control onChange={onChangeInput} type="number" defaultValue={stateStorage.area} />
-                    <InputGroup.Text>m²</InputGroup.Text>
+                    <Form.Control onChange={onChangeInput} type="number" defaultValue={area} />
+                    <InputGroup.Text>ha</InputGroup.Text>
                 </InputGroup>
             </Form.Group>
         </Form>
