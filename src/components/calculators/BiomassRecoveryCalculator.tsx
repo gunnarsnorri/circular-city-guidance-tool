@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Stack from "react-bootstrap/Stack";
@@ -25,6 +25,12 @@ enum WeatherCondition {
     Favourable = "Favourable year"
 }
 
+type GrassClippingsCalcStorage = {
+    area: number,
+    managementPractice: ManagementPractice,
+    weatherCondition: WeatherCondition
+}
+
 const gcRec: Record<string, Record<string, number>> = {}
 gcRec[ManagementPractice.TwoCut] = {};
 gcRec[ManagementPractice.FourCut] = {};
@@ -40,23 +46,24 @@ gcRec[ManagementPractice.Mulching][WeatherCondition.Favourable] = 25.39;
 gcRec[ManagementPractice.Unknown][WeatherCondition.Favourable] = 29.69666667;
 
 function GrassClippingsCalculator() {
-    const [area, setArea] = useState<number>(0);
-    const [managementPractice, setManagementPractice] = useState<ManagementPractice | undefined>(undefined);
-    const [weatherCondition, setWeatherCondition] = useState<WeatherCondition | undefined>(undefined);
+    const [stateStorage, setStateStorage] = useReducer((prev: Partial<GrassClippingsCalcStorage>, cur: Partial<GrassClippingsCalcStorage>) => {
+        localStorage.setItem('grassClippingsCalcStorage', JSON.stringify({ ...prev, ...cur }));
+        return { ...prev, ...cur };
+    }, (JSON.parse(localStorage.getItem('grassClippingsCalcStorage') ?? "{}") as Partial<GrassClippingsCalcStorage>) ?? { area: 0 });;
     let rec: Record<string, number> | undefined = undefined;
-    if (managementPractice !== undefined)
-        rec = gcRec[managementPractice];
+    if (stateStorage.managementPractice !== undefined)
+        rec = gcRec[stateStorage.managementPractice];
     let gc = 0;
-    if (rec !== undefined && weatherCondition !== undefined)
-        gc = rec[weatherCondition] ?? 0;
-    const recoveredGrassClippings = area * gc;
+    if (rec !== undefined && stateStorage.weatherCondition !== undefined)
+        gc = rec[stateStorage.weatherCondition] ?? 0;
+    const recoveredGrassClippings = stateStorage.area ?? 0 * gc;
     const onChangeManagementProcess = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        setManagementPractice(ManagementPractice[target.value as keyof typeof ManagementPractice])
+        setStateStorage({ managementPractice: ManagementPractice[target.value as keyof typeof ManagementPractice] })
     }
     const onChangeWeatherCondition = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        setWeatherCondition(WeatherCondition[target.value as keyof typeof WeatherCondition])
+        setStateStorage({ weatherCondition: WeatherCondition[target.value as keyof typeof WeatherCondition] })
     }
     const onClickInput = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
@@ -64,7 +71,7 @@ function GrassClippingsCalculator() {
     };
     const onChangeInput = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
-        setArea(target.valueAsNumber);
+        setStateStorage({ area: target.valueAsNumber });
     };
     return <Stack direction="horizontal" gap={3}>
         <Form>
@@ -87,7 +94,7 @@ function GrassClippingsCalculator() {
                 </Form.Select>
                 <InputGroup onClick={onClickInput}>
                     <InputGroup.Text>Area</InputGroup.Text>
-                    <Form.Control onChange={onChangeInput} type="number" defaultValue={area} />
+                    <Form.Control onChange={onChangeInput} type="number" defaultValue={stateStorage.area} />
                     <InputGroup.Text>m²</InputGroup.Text>
                 </InputGroup>
             </Form.Group>
