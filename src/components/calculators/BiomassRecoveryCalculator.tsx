@@ -64,6 +64,8 @@ function GrassClippingsCalculator() {
     if (rec !== undefined && weatherCondition !== undefined)
         gc = rec[weatherCondition] ?? 0;
     const recoveredGrassClippings = Math.round((area ?? 0) * gc);
+    const bioPolymerRatio = 13.455;
+    const bioPolymer = bioPolymerRatio/1000 * recoveredGrassClippings;
     const onChangeManagementProcess = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
         setStateStorage({ managementPractice: target.value as keyof typeof ManagementPractice })
@@ -109,17 +111,22 @@ function GrassClippingsCalculator() {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th colSpan={3} className="text-center">Yearly Recovered Grass Clippings</th>
+                    <th colSpan={2} className="text-center">Yearly Recovered Grass Clippings</th>
+                    <th colSpan={2} className="text-center">Biopolymer Granules Yield</th>
                 </tr>
                 <tr>
                     <th>Per hectare (t/ha/year)</th>
                     <th>Total (t/year)</th>
+                    <th>Per tonne of grass clippings (kg/t)</th>
+                    <th>Total (kg)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{gc}</td>
                     <td>{recoveredGrassClippings}</td>
+                    <td>{bioPolymerRatio}</td>
+                    <td>{bioPolymer}</td>
                 </tr>
             </tbody>
         </Table>
