@@ -5,6 +5,7 @@ import Stack from "react-bootstrap/Stack";
 import GrassClippingsCalculator from "./GrassClippingsCalculator";
 import TreePruningResiduesCalculator from "./TreePruningResiduesCalculator";
 import UrbanPlantedBiomassCalculator from "./UrbanPlantedBiomassCalculator";
+import ReedBiomassCalculator from "./ReedBiomassCalculator";
 
 enum BiomassCalculator {
     GrassClippings = "Grass clippings",
@@ -22,6 +23,7 @@ export default function BiomassRecoveryCalculatorSelection({ theme }: { theme: s
     const grassClippingsCalculator = GrassClippingsCalculator(area, setArea);
     const treePruningResiduesCalculator = TreePruningResiduesCalculator(area, setArea);
     const urbanPlantedBiomassCalculator = UrbanPlantedBiomassCalculator();
+    const reedBiomassCalculator = ReedBiomassCalculator();
     let activeContainer: JSX.Element = grassClippingsCalculator;
     switch (biomassCalculator) {
         case BiomassCalculator.TreePruningResidues:
@@ -31,6 +33,10 @@ export default function BiomassRecoveryCalculatorSelection({ theme }: { theme: s
         case BiomassCalculator.UrbanPlantedBiomass:
             if (activeContainer !== urbanPlantedBiomassCalculator)
                 activeContainer = urbanPlantedBiomassCalculator;
+            break;
+        case BiomassCalculator.ReedBiomass:
+            if (activeContainer !== reedBiomassCalculator)
+                activeContainer = reedBiomassCalculator;
             break;
         case BiomassCalculator.GrassClippings:
         default:

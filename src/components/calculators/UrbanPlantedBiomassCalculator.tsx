@@ -30,7 +30,7 @@ export default function UrbanPlantedBiomassCalculator() {
         up = upRec[WeatherCondition[stateStorage.weatherCondition]];
     const bioMassMixedUrbanGreenery = up * area;
     const bioMethanePerKg = 40.8;
-    const bioMethane = bioMassMixedUrbanGreenery * bioMethanePerKg / 1000;
+    const bioMethane = bioMassMixedUrbanGreenery * bioMethanePerKg * 1000;
 
     const onChangeWeatherCondition = (event: React.FormEvent<HTMLElement>) => {
         const target = event.target as HTMLInputElement;
