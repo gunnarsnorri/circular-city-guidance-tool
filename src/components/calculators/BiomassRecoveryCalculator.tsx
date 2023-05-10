@@ -4,6 +4,7 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Stack from "react-bootstrap/Stack";
 import GrassClippingsCalculator from "./GrassClippingsCalculator";
 import TreePruningResiduesCalculator from "./TreePruningResiduesCalculator";
+import UrbanPlantedBiomassCalculator from "./UrbanPlantedBiomassCalculator";
 
 enum BiomassCalculator {
     GrassClippings = "Grass clippings",
@@ -11,8 +12,6 @@ enum BiomassCalculator {
     UrbanPlantedBiomass = "Urban Planted Biomass",
     ReedBiomass = "Reed Biomass"
 }
-
-
 
 export default function BiomassRecoveryCalculatorSelection({ theme }: { theme: string }) {
     const [biomassCalculator, setBiomassCalculator] = useState<BiomassCalculator>(BiomassCalculator.GrassClippings);
@@ -22,11 +21,16 @@ export default function BiomassRecoveryCalculatorSelection({ theme }: { theme: s
     }, (JSON.parse(localStorage.getItem('grassClippingsArea') ?? "0") as number) ?? 0);;
     const grassClippingsCalculator = GrassClippingsCalculator(area, setArea);
     const treePruningResiduesCalculator = TreePruningResiduesCalculator(area, setArea);
+    const urbanPlantedBiomassCalculator = UrbanPlantedBiomassCalculator();
     let activeContainer: JSX.Element = grassClippingsCalculator;
     switch (biomassCalculator) {
         case BiomassCalculator.TreePruningResidues:
             if (activeContainer !== treePruningResiduesCalculator)
                 activeContainer = treePruningResiduesCalculator;
+            break;
+        case BiomassCalculator.UrbanPlantedBiomass:
+            if (activeContainer !== urbanPlantedBiomassCalculator)
+                activeContainer = urbanPlantedBiomassCalculator;
             break;
         case BiomassCalculator.GrassClippings:
         default:
