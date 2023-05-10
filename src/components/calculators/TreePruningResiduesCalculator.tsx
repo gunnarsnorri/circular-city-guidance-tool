@@ -38,7 +38,7 @@ export default function TreePruningResiduesCalculator(area: number, setArea: Fun
                     <tr>
                         <th>Per hectare (t/ha/year)</th>
                         <th>Total (t/year)</th>
-                        <th>Per tonne of grass clippings (MJ)</th>
+                        <th>Per tonne of tree pruning BM (MJ)</th>
                         <th>Total (L)</th>
                     </tr>
                 </thead>
