@@ -69,7 +69,7 @@ export default function GrassClippingsCalculator(area: number, setArea: Function
     };
     return (
         <Stack direction="horizontal" gap={3}>
-            <Form>
+            <Form onSubmit={(event) => {event.preventDefault()}}>
                 <Form.Group>
                     <Form.Select value={stateStorage.managementPractice} onChange={onChangeManagementProcess}>
                         <option value={undefined} key={-1}>Management Practice</option>

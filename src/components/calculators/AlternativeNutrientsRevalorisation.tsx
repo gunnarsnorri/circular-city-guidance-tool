@@ -32,7 +32,7 @@ export default function AlternativeNutrientsRevalorisationCalculator({ globalSto
 
     return (
         <Stack direction="horizontal" gap={3}>
-            <Form>
+            <Form onSubmit={(event) => {event.preventDefault()}}>
                 <Form.Group>
                     <PersonForm globalStorage={globalStorage} setGlobalStorage={setGlobalStorage} />
                 </Form.Group>

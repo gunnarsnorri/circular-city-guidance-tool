@@ -43,7 +43,7 @@ export default function UrbanPlantedBiomassCalculator() {
 
     return (
         <Stack direction="horizontal" gap={3}>
-            <Form>
+            <Form onSubmit={(event) => {event.preventDefault()}}>
                 <Form.Group>
                     <Form.Select value={stateStorage.weatherCondition} onChange={onChangeWeatherCondition}>
                         <option value={undefined} key={-1}>Weather Conditions</option>

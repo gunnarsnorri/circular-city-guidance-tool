@@ -24,12 +24,15 @@ export default function MonthlyTable(props: MonthlyTableProps) {
                         </tr>
                     )
                 })}
-                <tr key="total">
-                    <th>Total</th>
-                            {props.columns.map((column) => {
-                                return <th key={`total-${column.valueName}`}>{column.monthlyValues.reduce((a, b) => a + b, 0)} {column.unit}</th>
-                            })}
-                </tr>
+                {
+                    props.total &&
+                    <tr key="total">
+                        <th>Total</th>
+                        {props.columns.map((column) => {
+                            return <th key={`total-${column.valueName}`}>{column.monthlyValues.reduce((a, b) => a + b, 0)} {column.unit}</th>
+                        })}
+                    </tr>
+                }
             </tbody>
         </Table>
     )

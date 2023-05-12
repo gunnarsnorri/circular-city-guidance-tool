@@ -7,12 +7,12 @@
   align-items: center;
 }
 
-.alt-water-table {
+.thin-table {
     white-space: nowrap;
     width: 1% !important;
 }
-.alt-water-table td.fit, 
-.alt-water-table th.fit {
+.thin-table td.fit,
+.thin-table th.fit {
     white-space: nowrap;
     width: 1%;
 }

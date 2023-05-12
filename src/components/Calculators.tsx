@@ -12,6 +12,7 @@ import CostMedium from "../assets/costmedium.png";
 import EU from "../assets/eu.png"
 import ReactMarkdown from "react-markdown";
 import { GlobalCalcStorage } from "../interfaces/CalculatorInterface";
+import GreenRoofCalculator from "./calculators/GreenRoofCalculator";
 
 export const Image = (
     props: React.DetailedHTMLProps<
@@ -81,7 +82,13 @@ export default function Calculators(theme: string) {
                     <Accordion.Item eventKey="3">
                         <Accordion.Header>Biomass Recovery</Accordion.Header>
                         <Accordion.Body>
-                            <BiomassRecoveryCalculatorSelection theme={theme} />
+                            <BiomassRecoveryCalculatorSelection />
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="4">
+                        <Accordion.Header>Green Roof</Accordion.Header>
+                        <Accordion.Body>
+                            <GreenRoofCalculator />
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>

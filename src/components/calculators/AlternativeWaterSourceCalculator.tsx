@@ -6,7 +6,7 @@ import { allNBSSystems, NBSSystem } from "../../calculator/NBSSystem";
 import { allRegionData } from "../../calculator/Region";
 import MonthlyTable from "../MonthlyTable";
 import { GlobalCalcStorage } from "../../interfaces/CalculatorInterface";
-
+import PersonForm from "../PersonForm";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -17,7 +17,6 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import PersonForm from "../PersonForm";
 
 
 ChartJS.register(
@@ -138,7 +137,7 @@ export default function AlternativeWaterSourceCalculator({ globalStorage, setGlo
     return (
         <>
             <Stack direction="horizontal" gap={3}>
-                <Form>
+                <Form onSubmit={(event) => {event.preventDefault()}}>
                     <Form.Group>
                         <PersonForm globalStorage={globalStorage} setGlobalStorage={setGlobalStorage} />
                         {allNBSSystems.map((nbsSystem) => {
@@ -148,7 +147,7 @@ export default function AlternativeWaterSourceCalculator({ globalStorage, setGlo
                         })}
                     </Form.Group>
                 </Form>
-                <MonthlyTable className="alt-water-table" columns={[{ valueName: "Surface Runoff", unit: "L", monthlyValues: surfaceRunoff }]} />
+                <MonthlyTable total className="thin-table" columns={[{ valueName: "Surface Runoff", unit: "L", monthlyValues: surfaceRunoff }]} />
                 <AWSBarChart surfaceRunoff={surfaceRunoff} monthlyGreyWater={monthlyGreyWater} monthlyWasteWater={monthlyWasteWater} />
             </Stack>
         </>

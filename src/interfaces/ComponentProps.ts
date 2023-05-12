@@ -12,4 +12,5 @@ export interface MonthlyColumn {
 export interface MonthlyTableProps {
     columns: Array<MonthlyColumn>;
     className?: string;
+    total?: boolean;
 }

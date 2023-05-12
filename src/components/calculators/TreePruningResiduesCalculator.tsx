@@ -16,7 +16,7 @@ export default function TreePruningResiduesCalculator(area: number, setArea: Fun
 
     return (
         <Stack direction="horizontal" gap={3}>
-            <Form>
+            <Form onSubmit={(event) => {event.preventDefault()}}>
                 <Form.Group>
                     <AreaInput defaultValue={area} onChangeInput={onChangeInput}/>
                 </Form.Group>

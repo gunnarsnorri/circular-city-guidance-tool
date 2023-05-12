@@ -34,7 +34,7 @@ export default function AlternativeNutrientsCollectionCalculator({ globalStorage
     }
     return (
         <Stack direction="horizontal" gap={3}>
-            <Form>
+            <Form onSubmit={(event) => {event.preventDefault()}}>
                 <Form.Group>
                     <PersonForm globalStorage={globalStorage} setGlobalStorage={setGlobalStorage} />
                 </Form.Group>

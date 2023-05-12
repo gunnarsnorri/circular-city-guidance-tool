@@ -14,7 +14,7 @@ enum BiomassCalculator {
     ReedBiomass = "Reed Biomass"
 }
 
-export default function BiomassRecoveryCalculatorSelection({ theme }: { theme: string }) {
+export default function BiomassRecoveryCalculatorSelection() {
     const [biomassCalculator, setBiomassCalculator] = useState<BiomassCalculator>(BiomassCalculator.GrassClippings);
     const [area, setArea] = useReducer((prev: number, cur: number) => {
         localStorage.setItem('grassClippingsArea', cur.toString());
