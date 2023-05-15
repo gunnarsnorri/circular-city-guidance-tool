@@ -78,7 +78,7 @@ export default function GreenRoofCalculator() {
             <Form onSubmit={(event) => {event.preventDefault()}}>
                 <Form.Group>
                     <Form.Select onChange={onChangeCity} value={stateStorage.city ?? undefined}>
-                        <option key="default">Region</option>
+                        <option key="default">City</option>
                         {
                             Object.keys(allCityData).map((city: string) => {
                                 return <option value={city} key={city}>{city}</option>

@@ -9,6 +9,7 @@ import NavigatorMenu from './NavigatorMenu';
 import { NavigatorProps } from '../interfaces/ComponentProps'
 import { Col } from 'react-bootstrap';
 import Info from './Info';
+import { navigatorTexts } from '../texts';
 
 let firstTime = true;
 
@@ -333,9 +334,9 @@ export default function Navigator(
                         elements={elements}
                     />
                 </div>
-            </Col >
+            </Col>
             <Col sm={4} md={4} lg={4} style={{ overflowY: "auto", height: `calc(100vh - ${navbarHeight ?? 0}px)` }}>
-                <Info textId={textId} />
+                <Info texts={navigatorTexts} textId={textId} />
             </Col>
         </>
     );

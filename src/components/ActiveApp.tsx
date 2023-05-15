@@ -4,7 +4,7 @@ import { NavigatorProps } from "../interfaces/ComponentProps";
 
 const ActiveApp = ({ activeContainerId, navigatorProps }: { activeContainerId: String, navigatorProps: NavigatorProps }) => {
     const navigator = Navigator(navigatorProps);
-    const calculators = Calculators(navigatorProps.theme);
+    const calculators = Calculators(navigatorProps.navbarHeight);
     let activeContainer: JSX.Element = navigator;
     switch (activeContainerId) {
         case "2":

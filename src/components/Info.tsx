@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react"
 import ReactMarkdown from "react-markdown";
-import { texts } from "../texts";
 import "../styles/info.css";
 import CostMedium from "../assets/costmedium.png";
 import EU from "../assets/eu.png"
+import { Texts } from "../texts";
 
 const Image = (
     props: React.DetailedHTMLProps<
         React.ImgHTMLAttributes<HTMLImageElement>,
         HTMLImageElement
     >
-) => <img style={{ maxWidth: '50%' }}{...props} />
+) => <img alt="" style={{ maxWidth: '50%' }}{...props} />
 
 
-export default function Info({ textId }: { textId: string }) {
+export default function Info({ texts, textId }: { texts: Texts, textId: string }) {
     const [text, setText] = useState("");
     const footer = `![COST](${CostMedium})![Funded by the European Union](${EU})`;
 
@@ -26,7 +26,7 @@ export default function Info({ textId }: { textId: string }) {
             setText(textData)
         })
 
-    }, [textId])
+    }, [texts, textId])
     return (
         <div className="infoBox">
             <ReactMarkdown children={text} />

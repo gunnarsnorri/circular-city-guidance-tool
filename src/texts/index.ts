@@ -1,4 +1,4 @@
-interface Texts {
+export interface Texts {
     [key: string]: any;
 }
 function importAll(r: __WebpackModuleApi.RequireContext) {
@@ -10,4 +10,5 @@ function importAll(r: __WebpackModuleApi.RequireContext) {
     return texts;
 }
 
-export const texts = importAll(require.context('./', true, /\.md/));
+export const navigatorTexts = importAll(require.context('./navigator/', true, /\.md/));
+export const calculatorTexts = importAll(require.context('./calculator/', true, /\.md/));

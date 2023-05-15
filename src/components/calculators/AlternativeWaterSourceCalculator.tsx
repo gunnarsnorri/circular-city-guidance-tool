@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, InputGroup } from "react-bootstrap";
+import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import Stack from "react-bootstrap/Stack";
 import "../../styles/calculator.css";
 import { allNBSSystems, NBSSystem } from "../../calculator/NBSSystem";
@@ -15,6 +15,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    ChartOptions
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
@@ -56,8 +57,10 @@ const AreaInputGroup = (props: NumberInputGroupProps) => {
 }
 
 const AWSBarChart = ({ surfaceRunoff, monthlyGreyWater, monthlyWasteWater }: { surfaceRunoff: Array<number>, monthlyGreyWater: Array<number>, monthlyWasteWater: Array<number> }) => {
-    const options = {
+    const options: ChartOptions<"bar"> = {
         responsive: true,
+        aspectRatio: 1.2,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'top' as const,
@@ -68,14 +71,20 @@ const AWSBarChart = ({ surfaceRunoff, monthlyGreyWater, monthlyWasteWater }: { s
         },
         scales: {
             x: {
-                stacked: true
+                stacked: true,
             },
             y: {
                 stacked: true
+            },
+        },
+        datasets: {
+            bar: {
+                barThickness: 10,
+                maxBarThickness: 15
             }
         }
     };
-    const labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novermber", "December"];
+    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const chartData = {
         labels,
         datasets: [
@@ -135,9 +144,9 @@ export default function AlternativeWaterSourceCalculator({ globalStorage, setGlo
 
 
     return (
-        <>
-            <Stack direction="horizontal" gap={3}>
-                <Form onSubmit={(event) => {event.preventDefault()}}>
+        <Row>
+            <Col xs={3} md={3} lg={3}>
+                <Form onSubmit={(event) => { event.preventDefault() }}>
                     <Form.Group>
                         <PersonForm globalStorage={globalStorage} setGlobalStorage={setGlobalStorage} />
                         {allNBSSystems.map((nbsSystem) => {
@@ -147,9 +156,13 @@ export default function AlternativeWaterSourceCalculator({ globalStorage, setGlo
                         })}
                     </Form.Group>
                 </Form>
-                <MonthlyTable total className="thin-table" columns={[{ valueName: "Surface Runoff", unit: "L", monthlyValues: surfaceRunoff }]} />
+            </Col>
+            <Col xs={3} md={3} lg={3}>
+                <MonthlyTable total columns={[{ valueName: "Surface Runoff", unit: "L", monthlyValues: surfaceRunoff }]} />
+            </Col>
+            <Col xs={6} md={6} lg={6}>
                 <AWSBarChart surfaceRunoff={surfaceRunoff} monthlyGreyWater={monthlyGreyWater} monthlyWasteWater={monthlyWasteWater} />
-            </Stack>
-        </>
+            </Col>
+        </Row>
     )
 }
